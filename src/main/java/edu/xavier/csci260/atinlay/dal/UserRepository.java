@@ -20,7 +20,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Allows managing {@link User} instances.
+ * Allows managing {@link User} instances using the Spring functionality to have this class act as the java version of
+ * our SQL database
  *
  * @author Rob Winch
  * @Modiefied by Luke McNamee for the OOOtracker project

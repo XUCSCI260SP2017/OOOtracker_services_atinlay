@@ -1,7 +1,9 @@
+INSERT INTO admin(id,email,password,first_name,last_name) VALUES (0,'admin@example.com','password','Admin','Way');
+
 INSERT INTO user(id,email,password,first_name,last_name) VALUES (0,'ellisa4@xavier.edu','password','Andre','Ellis');
 INSERT INTO user(id,email,password,first_name,last_name) VALUES (1,'staudigelc@xavier.edu','password','Chris','Staudigel');
 INSERT INTO user(id,email,password,first_name,last_name) VALUES (2,'mcnameel@xavier.edu','password','Luke','McNamee');
-INSERT INTO user(id,email,password,first_name,last_name) VALUES (3,'user@example.com','password','Atin','Lay');
+INSERT INTO user(id,email,password,first_name,last_name) VALUES (3,'user@example.com','password','User','Way');
 
 INSERT INTO message(id,created,to_id,from_id,summary,text) VALUES (100,'2017-04-01 11:30:00',0,2,'Hello Andre','We need to make this work within our context');
 INSERT INTO message(id,created,to_id,from_id,summary,text) VALUES (101,'2017-04-01 14:35:00',0,1,'How are you Andre?','This message is for Rob');

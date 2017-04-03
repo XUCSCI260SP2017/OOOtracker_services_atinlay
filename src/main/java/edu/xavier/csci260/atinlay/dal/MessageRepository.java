@@ -22,7 +22,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Manages {@link Message} instances
+ * Allows managing {@link Message} instances using the Spring functionality to have this class act as the java version of
+ * our SQL database
  *
  * @author Rob Winch
  * @Modiefied by Luke McNamee for the OOOtracker project

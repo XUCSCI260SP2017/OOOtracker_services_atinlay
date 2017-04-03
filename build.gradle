@@ -1,4 +1,4 @@
-buildscript {
+/*buildscript {
     repositories {
         mavenCentral()
         maven {
@@ -15,14 +15,14 @@ plugins {
     id "org.sonarqube" version "2.2"
 }
 
-apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
-group 'Database'
+group 'atinlay'
 version '0.1.0'
-
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.1'
@@ -32,30 +32,110 @@ task wrapper(type: Wrapper) {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+mainClassName = "edu.xavier.csci260.atinlay.Application"
+
 jar {
-    baseName = 'Phase_1'
+    baseName = 'atinlay'
     version =  '0.1.0'
 }
 
 repositories {
     mavenCentral()
+    maven { url 'https://repo.spring.io/libs-snapshot' }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile ('org.springframework.boot:spring-boot-starter-web'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+    compile "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.boot:spring-boot-starter-security",
+            "org.springframework.security:spring-security-data",
+            "org.springframework.boot:spring-boot-devtools"
+    compile ('org.springframework.boot:spring-boot-starter-thymeleaf'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+// https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.4.RELEASE'
 
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile("org.springframework.boot:spring-boot-starter-security")
-    compile('org.springframework.boot:spring-boot-starter-jdbc')
-    compile('org.springframework.boot:spring-boot-starter-actuator')
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile	"org.webjars:angularjs:1.4.9",
+            "org.webjars:bootstrap:3.3.6",
+            "org.webjars:jquery:1.11.3",
+            "com.h2database:h2",
+            "org.springframework.data:spring-data-jpa",
+            "javax.servlet:jstl"
 
-    runtime('org.springframework.boot:spring-boot-devtools')
-    runtime('com.h2database:h2')
+    compile ('org.webjars:webjars-locator'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+    compile ('com.maxmind.geoip2:geoip2:2.8.0'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+
+    compile "com.fasterxml.jackson.core:jackson-databind:2.8.7"
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.security:spring-security-test")
+}*/
+buildscript {
+    repositories {
+        maven { url 'https://repo.spring.io/libs-snapshot' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
+    }
+}
 
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
 
+group = 'atinlay'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext['spring-security.version'] = '4.1.2.BUILD-SNAPSHOT'
+ext['assertj.version'] = '3.5.2'
+
+repositories {
+    maven { url 'https://repo.spring.io/libs-snapshot' }
+}
+
+dependencies {
+    compile ('org.springframework.boot:spring-boot-starter-web'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+    compile "org.springframework.boot:spring-boot-starter-data-jpa",
+            "org.springframework.boot:spring-boot-starter-security",
+            "org.springframework.security:spring-security-data",
+            "org.springframework.boot:spring-boot-devtools"
+    compile ('org.springframework.boot:spring-boot-starter-thymeleaf'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+// https://mvnrepository.com/artifact/org.springframework/spring-webmvc
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.1.4.RELEASE'
+
+    compile	"org.webjars:angularjs:1.4.9",
+            "org.webjars:bootstrap:3.3.6",
+            "org.webjars:jquery:1.11.3",
+            "com.h2database:h2",
+            "org.springframework.data:spring-data-jpa",
+            "javax.servlet:jstl"
+
+    compile ('org.webjars:webjars-locator'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+    compile ('com.maxmind.geoip2:geoip2:2.8.0'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+
+    compile "com.fasterxml.jackson.core:jackson-databind:2.8.7"
+
+    testCompile "org.springframework.boot:spring-boot-starter-test",
+            "org.springframework.security:spring-security-test",
+            "com.jayway.jsonpath:json-path"
 
 }

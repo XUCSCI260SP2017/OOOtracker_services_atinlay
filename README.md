@@ -2,7 +2,7 @@
 Student Webservice Project
 Xavier University Software Engineering 260
 
-Current Valid Username: user
+Current Valid Username: user@example.com
 
 Current Valid Password: password
 

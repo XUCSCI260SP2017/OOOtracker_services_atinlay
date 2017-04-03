@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/global.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/navigation/navigation.css}" />
+</head>
+<body>
+	<div id="header">
+		<h1>Atin Lay Time Management</h1>
+	</div>
+
+	<div id="navigation">
+		<ul id="saturday">
+			<li><a th:href="@{/hello}"><span>Home</span></a></li>
+			<li><a th:href="@{/messages}"><span>messages</span></a></li>
+			<li><a th:href="@{/requests}"><span>requests</span></a></li>
+			<li><a th:href="@{/calendar}">calendar<span></span></a></li>
+		</ul>
+	</div>
+	
+	<form id="addEmployee" method="post" th:action="@{/newEmployee}">
+		<table>
+			<tr>
+				<td>first name:</td>
+				<td><input type="text" name="firstName"></input></td>
+			</tr>
+
+			<tr>
+				<td>last name:</td>
+				<td><input type="text" name="lastName"></input></td>
+			</tr>
+
+			<tr>
+				<td>username:</td>
+				<td><input type="text" name="username"></input></td>
+			</tr>
+
+			<tr>
+				<td>password:</td>
+				<td><input type="password" name="password"></input></td>
+			</tr>
+			
+			<tr>
+				<td>confirm password:</td>
+				<td><input type="password" name="passwordConfirm"></input></td>
+			</tr>
+
+			<tr>
+				<td>has Employees:</td>
+				<td>
+					<input type="radio" name="hasEmployeesTrue" value="hasEmployeesTrue">yes</input>
+					<br></br>
+					<input type="radio" name="hasEmployeesFalse" value="hasEmployeesFalse">no</input>
+				</td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" name="submit" value="submit"></input></td>
+			</tr>
+		</table>
+	</form>
+
+	<div id="footer">
+	<hr></hr>
+		<table>
+			<!--Insert quick links here-->
+			<tr>
+`				<td><a th:href="@{/logout}">logout</a></td>
+				<td><a th:href="@{/messages}">messages</a></td>
+				<td><a th:href="@{/requests}">requests</a></td>			
+				<td><a th:href="@{/calendar}">calendar</a></td>			
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

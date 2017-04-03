@@ -18,11 +18,13 @@ package edu.xavier.csci260.atinlay.domain;
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javafx.beans.DefaultProperty;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Represents a user in our system.
@@ -54,10 +56,21 @@ public class User implements Serializable {
 	@Column(unique = true, nullable = false)
 	private String email;
 
+	@Column(length = 60)
 	@NotEmpty(message = "Password is required.")
 	private String password;
 
+	@NotEmpty
+	private boolean enabled;
+
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+   			   inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Collection<Role> roles;
+
 	public User() {
+		super();
+		this.enabled = false;
 	}
 
 	public User(User user) {
@@ -107,6 +120,22 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(final Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(final boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	private static final long serialVersionUID = 2738859149330833739L;

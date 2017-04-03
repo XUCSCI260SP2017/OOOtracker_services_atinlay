@@ -34,7 +34,7 @@ public interface MessageRepository extends CrudRepository<Message, Long> {
 	@Query("SELECT m FROM Message m WHERE m.to.id = ?#{principal.id}")
 	Iterable<Message> inbox();
 
-	@Query("select m from Message m where m.from.id = ?#{principal.id}")
+	@Query("SELECT m FROM Message m WHERE m.from.id = ?#{principal.id}")
 	Iterable<Message> sent();
 
 	@ReadableMessage

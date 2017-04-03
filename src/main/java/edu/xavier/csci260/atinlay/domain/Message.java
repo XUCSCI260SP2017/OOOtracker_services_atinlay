@@ -42,7 +42,7 @@ public class Message {
 
 	private Calendar created = Calendar.getInstance();
 
-	@OneToOne
+	@OneToOne // signifies a one to one relationship, ie. there is only one user to whom each message is sent
 	@NotNull
 	private User to;
 

@@ -1,4 +1,3 @@
 git config crendential.helper store
-git submodule init
-git submodule update
-echo "Modules installed"
+git clone https://github.com/XUCSCI260SP2017/OOOtracker_UI_Atinlay.git src/main/resources
+echo "resources installed"

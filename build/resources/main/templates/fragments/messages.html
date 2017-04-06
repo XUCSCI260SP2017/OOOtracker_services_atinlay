@@ -18,17 +18,48 @@
 
 	<div th:include="fragments/navigation :: navigationLoggedIn"></div>
 	
-	<!--put all code below here-->
 	<h4 th:inline="text">[[${#httpServletRequest.remoteUser}]]'s messages</h4>
 	
-	<div th:if="${true}"> <!--replace true with Message.hasMessage()-->
-		<div th:include="fragments/messages :: hasMessages"></div>
+	<div th:fragment="noMessages">
+		<h4>You have no messages</h4>
 	</div>
+	
+	<div th:fragment="hasMessages">
+		<div id="messages">
+			<table>
+				<tr>
+					<th>Subject</th>
+					<th>Sender</th>
+					<th>Date</th>
+				</tr>
 
-	<div th:if="${false}"> <!--replace false with !(Message.hasMessage())-->
-		<div th:include="fragments/messages :: noMessages"></div>
+				<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+				</tr>
+				
+				<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+				</tr>
+				
+				<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+				</tr>
+				
+				<tr>
+					<td>test</td>
+					<td>test</td>
+					<td>test</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<!--put all code above here-->
+		
 	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -15,14 +15,7 @@
 		<h1>Atin Lay Time Management</h1>
 	</div>
 
-	<div id="navigation">
-		<ul id="saturday">
-			<li><a th:href="@{/hello}"><span>Home</span></a></li>
-			<li><a th:href="@{/messages}"><span>messages</span></a></li>
-			<li><a th:href="@{/requests}"><span>requests</span></a></li>
-			<li><a th:href="@{/calendar}">calendar<span></span></a></li>
-		</ul>
-	</div>
+	<div th:include="fragments/navigation :: navigationLoggedOut"></div>
 	
 	<form th:action="@{/login}" method="post">
 		<table>
@@ -41,17 +34,6 @@
 		</table>
 	</form>
 		
-	<div id="footer">
-	<hr></hr>
-		<table>
-			<!--Insert quick links here-->
-			<tr>
-				<td><a th:href="@{/logout}">logout</a></td>
-				<td><a th:href="@{/messages}">messages</a></td>
-				<td><a th:href="@{/requests}">requests</a></td>
-				<td><a th:href="@{/calendar}">calendar</a></td>
-			</tr>
-		</table>
-	</div>
+	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

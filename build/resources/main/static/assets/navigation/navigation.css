@@ -26,13 +26,14 @@
     display:block;
     float:left;
     margin:0;
-    pading:0;
+    padding:0;
 }
 
 #navigation ul#saturday li a{
     display:block;
     float:left;
     text-decoration:none;
+    color:0000ff;
     padding:12px 20px 0 20px;
     height:24px;
     background:transparent url("bgDIVIDER.gif") no-repeat top right;

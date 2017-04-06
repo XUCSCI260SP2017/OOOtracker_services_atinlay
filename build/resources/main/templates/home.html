@@ -15,11 +15,8 @@
 		<h1>Atin Lay Time Management</h1>
 	</div>
 
-	<div id="navigation">
-		<ul id="saturday">
-			<li><a class="current" th:href="@{/home}"><span>Home</span></a></li>
-		</ul>
-	</div>
+	<div th:include="fragments/navigation :: navigationLoggedOut"></div>
+	
 		
 	<h3>Welcome</h3>
 	<p>Welcome to Atin Lay time management software.</p>
@@ -29,16 +26,6 @@
 	<h3>About</h3>
 	<p>This software is made for the management of your time and your employees time.</p>
 	
-	<div id="footer">
-		<hr></hr>
-		<table>
-			<!--Insert quick links here-->
-			<tr>
-				<td><a th:href="@{/logout}">logout</a></td>
-				<td><a th:href="@{/messages}">messages</a></td>
-				<td><a th:href="@{/requests}">requests</a></td>
-			</tr>
-		</table>
-	</div>
+	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-git config credential.helper store
 cd src/main/resources
+git config credential.helper store
 echo "Give a commit message:"
 read commitMessage
 git add *

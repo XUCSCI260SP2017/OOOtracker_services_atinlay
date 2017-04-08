@@ -18,17 +18,35 @@
 
 	<div th:include="fragments/navigation :: navigationLoggedIn"></div>
 	
-	<!--put all code below here-->
 	<h4 th:inline="text">[[${#httpServletRequest.remoteUser}]]'s messages</h4>
 	
-	<div th:if="${messages}==null"> <!--replace true with Message.hasMessage()-->
-		<div th:include="fragments/messages :: hasMessages"></div>
+	<div th:fragment="noMessages">
+		<h4>You have no messages</h4>
 	</div>
+	
+	<div th:fragment="hasMessages">
+		<div id="readerPane">
 
-	<div th:if="${messages}!=null"> <!--replace false with !(Message.hasMessage())-->
-		<div th:include="fragments/messages :: noMessages"></div>
+		</div>
+
+		<div id="messages">
+			<table>
+				<tr>
+						<th>Subject</th>
+						<th>Sender</th>
+						<th>Date</th>
+				</tr>
+
+				<tr th:each="message : ${messages}">
+					<!--Above is an each statement that will make a new row for each Message given username has-->
+					<td><a th:text="${message.getSubject()}"> </a></td>
+					<td th:text="${message.getSender()}"> </td>
+					<td th:text="${message.getTimeSent()}"> </td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<!--put all code above here-->
+		
 	<div th:include="fragments/footer :: footer"></div>
 </body>
 </html>

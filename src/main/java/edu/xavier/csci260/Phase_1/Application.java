@@ -1,7 +1,11 @@
-package edu.xavier.csci260.Phase_1;
+package edu.xavier.csci260.atinlay;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @Author Luke McNamee for the OOOtracker project
+ */
 
 @SpringBootApplication
 public class Application {

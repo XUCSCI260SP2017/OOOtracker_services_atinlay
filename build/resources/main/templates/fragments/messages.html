@@ -25,36 +25,23 @@
 	</div>
 	
 	<div th:fragment="hasMessages">
+		<div id="readerPane">
+
+		</div>
+
 		<div id="messages">
 			<table>
 				<tr>
-					<th>Subject</th>
-					<th>Sender</th>
-					<th>Date</th>
+						<th>Subject</th>
+						<th>Sender</th>
+						<th>Date</th>
 				</tr>
 
-				<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-				</tr>
-				
-				<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-				</tr>
-				
-				<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
-				</tr>
-				
-				<tr>
-					<td>test</td>
-					<td>test</td>
-					<td>test</td>
+				<tr th:each="message : ${messages}">
+					<!--Above is an each statement that will make a new row for each Message given username has-->
+					<td><a th:text="${message.getSubject()}"> </a></td>
+					<td th:text="${message.getSender()}"> </td>
+					<td th:text="${message.getTimeSent()}"> </td>
 				</tr>
 			</table>
 		</div>

@@ -21,11 +21,11 @@
 	<!--put all code below here-->
 	<h4 th:inline="text">[[${#httpServletRequest.remoteUser}]]'s messages</h4>
 	
-	<div th:if="${true}"> <!--replace true with Message.hasMessage()-->
+	<div th:if="${messages}==null"> <!--replace true with Message.hasMessage()-->
 		<div th:include="fragments/messages :: hasMessages"></div>
 	</div>
 
-	<div th:if="${false}"> <!--replace false with !(Message.hasMessage())-->
+	<div th:if="${messages}!=null"> <!--replace false with !(Message.hasMessage())-->
 		<div th:include="fragments/messages :: noMessages"></div>
 	</div>
 	<!--put all code above here-->

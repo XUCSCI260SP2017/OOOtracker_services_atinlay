@@ -1,128 +1,105 @@
-package edu.xavier.csci260.Phase_1.domain;
+/*
+ * Copyright 2002-2013 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package edu.xavier.csci260.atinlay.domain;
 
-import java.time.LocalDateTime;
+import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Calendar;
+
+/**
+ * A Message is an entity that can be sent to a {@link User}.
+ *
+ * @author Rob Winch
+ * @Modified by Luke McNamee for the OOOtracker project
+ */
+@Entity
 public class Message {
-	private Employee recipient;
-	private Employee sender;
-	private String msgBody;
-	private String subject;
-	private LocalDateTime timeSent;
-	private LocalDateTime timeOpened;
-	private Message parentMessage;
-	
-	public Message() {}
-	
-	public Message(Employee recipient, Employee sender, String msgBody, String subject, Message parentMessage) {
-		this.recipient = recipient;
-		this.sender = sender;
-		this.msgBody = msgBody;
-		this.subject = subject;
-		this.parentMessage = parentMessage;
-		this.timeSent = LocalDateTime.now();
-	}
-	
-	// TODO find a way to uniquely identify messages
-	public Message(Employee recipient, Employee sender, String msgBody, String subject) {
-		this.recipient = recipient;
-		this.sender = sender;
-		this.msgBody = msgBody;
-		this.subject = subject;
-		//this.parentMessage = parentMessage;
-		this.timeSent = LocalDateTime.now();
-	}
-	
-	/**
-	 * @return the recipient
-	 */
-	public Employee getRecipient() {
-		return recipient;
-	}
-	/**
-	 * @param recipient the recipient to set
-	 */
-	public void setRecipient(Employee recipient) {
-		this.recipient = recipient;
-	}
-	/**
-	 * @return the sender
-	 */
-	public Employee getSender() {
-		return sender;
-	}
-	/**
-	 * @param sender the sender to set
-	 */
-	public void setSender(Employee sender) {
-		this.sender = sender;
-	}
-	/**
-	 * @return the msgBody
-	 */
-	public String getMsgBody() {
-		return msgBody;
-	}
-	/**
-	 * @param msgBody the msgBody to set
-	 */
-	public void setMsgBody(String msgBody) {
-		this.msgBody = msgBody;
-	}
-	/**
-	 * @return the subject
-	 */
-	public String getSubject() {
-		return subject;
-	}
-	/**
-	 * @param subject the subject to set
-	 */
-	public void setSubject(String subject) {
-		this.subject = subject;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	@NotEmpty(message = "Message is required.")
+	private String text;
+
+	@NotEmpty(message = "Summary is required.")
+	private String summary;
+
+	private Calendar created = Calendar.getInstance();
+
+	@OneToOne // signifies a one to one relationship, ie. there is only one user to whom each message is sent
+	@NotNull
+	private User to;
+
+	@OneToOne
+	@NotNull
+	private User from;
+
+	public Message() {
+		to = new User();
+		from = new User();
 	}
 
-	/**
-	 * @return the timeSent
-	 */
-	public LocalDateTime getTimeSent() {
-		return timeSent;
+	public User getFrom() {
+		return from;
 	}
 
-	/**
-	 * @param timeSent the timeSent to set
-	 */
-	public void setTimeSent(LocalDateTime timeSent) {
-		this.timeSent = timeSent;
+	public void setFrom(User from) {
+		this.from = from;
 	}
 
-	/**
-	 * @return the timeOpened
-	 */
-	public LocalDateTime getTimeOpened() {
-		return timeOpened;
+	public User getTo() {
+		return to;
 	}
 
-	/**
-	 * @param timeOpened the timeOpened to set
-	 */
-	public void setTimeOpened(LocalDateTime timeOpened) {
-		this.timeOpened = timeOpened;
+	public void setTo(User to) {
+		this.to = to;
 	}
 
-	/**
-	 * @return the parentMessage
-	 */
-	public Message getParentMessage() {
-		return parentMessage;
+	public Long getId() {
+		return id;
 	}
 
-	/**
-	 * @param parentMessage the parentMessage to set
-	 */
-	public void setParentMessage(Message parentMessage) {
-		this.parentMessage = parentMessage;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	
-	
+	public Calendar getCreated() {
+		return created;
+	}
+
+	public void setCreated(Calendar created) {
+		this.created = created;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getSummary() {
+		return summary;
+	}
+
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
 }

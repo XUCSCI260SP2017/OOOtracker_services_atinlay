@@ -1,5 +1,6 @@
 
-/src/main/resources
+.idea/
+src/main/resources
 
 # Created by 
 https://www.gitignore.io/api/java,macos,linux,gradle,windows,eclipse,intellij,intellij+iml,visualstudiocode

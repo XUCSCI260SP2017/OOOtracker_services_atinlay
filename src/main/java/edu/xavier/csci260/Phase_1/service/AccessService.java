@@ -12,7 +12,7 @@ import java.util.List;
 
  // INSERT INTO user(id,email,password,first_name,last_name,enabled)
  // VALUES (0,'staudigelc@xavier.edu','password','Chris','Staudigel',true);
-public interface EmployeeService {
+public interface AccessService {
 
     /**
     * add employee

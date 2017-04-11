@@ -1,49 +1,66 @@
 package edu.xavier.csci260.Phase_1.service;
 
-import java.util.List;
-
 import edu.xavier.csci260.Phase_1.domain.Employee;
-import edu.xavier.csci260.Phase_1.domain.Message;
+
+import java.util.List;
 
 /**
  * class ___ is a member of the Phase_1 project.
  * <p>
  * Created by Luke on 3/20/2017.
  */
+
+ // INSERT INTO user(id,email,password,first_name,last_name,enabled)
+ // VALUES (0,'staudigelc@xavier.edu','password','Chris','Staudigel',true);
 public interface EmployeeService {
 
     /**
-     * not sure what you want for param
-     * @return true if successfully created
-     */
-    public void createEmplyee(String user, String first, String last, String password);
+    * add employee
+    */
+    void addEmployee(int id, String email, String pass, String first, String last, boolean enabled);
 
     /**
-     * not sure what you want for param
-     * @return true if successfully created
-     */
-    // TODO Not sure what this is for
-    public boolean pushEmployee();
-
-    /**
-     * not sure what you want for param
+     * returns employee with given email
      *
-     * @return  Get all messages which have not been opened
-     */
-    public List<Message> getNewMessages();
-
-    /**
-     * not sure what you want for param
+     * @param email
      *
-     * @return  Get all messages
+     * @return
      */
-    public List<Message> getMessages();
+    List<Employee> getEmployee(String email);
 
     /**
-     * not sure what you want for param
-     * @return get specific message
+     * returns employee with given email
+     * @param e
+     * @return
      */
-    public Message getMessage();
-    
-    Employee getEmployeeByUsername(String username);
+    List<Employee> getEmployee(Employee e);
+
+    /**
+     * returns employee by id number
+     * @param id
+     * @return
+     */
+    List<Employee> getEmployee(int id);
+
+    /**
+     * grab employee by email, replace it with new employee
+     *
+     * @param email
+     * @param employee
+     */
+    void updateEmployee(String email, Employee employee);
+
+    /**
+     * deletes employee by employee
+     * @param employee
+     * @return
+     */
+    List<Employee> deleteEmployee(Employee employee);
+
+    /**
+     * deletes employee by email
+     * @param email
+     * @return
+     */
+    List<Employee> deleteEmployee(String email);
 }

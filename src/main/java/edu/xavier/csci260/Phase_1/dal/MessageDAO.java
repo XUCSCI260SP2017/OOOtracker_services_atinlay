@@ -1,41 +1,45 @@
 package edu.xavier.csci260.Phase_1.dal;
 
-import java.util.List;
-
-import edu.xavier.csci260.Phase_1.domain.Employee;
 import edu.xavier.csci260.Phase_1.domain.Message;
 
+import java.sql.Date;
+import java.util.List;
+
 public interface MessageDAO {
-	
-	/**
-	 * returns messages that have the specified employee as the sender
-	 * 
-	 * @param employee
-	 * ******or******
-	 * @param username
-	 * @return list of messages
-	 */
-	List<Message> getMessagesBySender(String username);
-	List<Message> getMessagesBySender(Employee sender);
-	
-	/**
-	 * returns messages that have the specified recipient
-	 * 
-	 * @param employee
-	 * ******or******
-	 * @param username
-	 * @return list of messages
-	 */
-	List<Message> getMessagesByRecipient(String username);
-	List<Message> getMessagesByRecipient(Employee recipient);
-	
-	/**
-	 * creates a new message
-	 * @param sender
-	 * @param recipient
-	 * @return
-	 */
-	// TODO Message UID
-	void createMessage(Employee sender, Employee recipient, String subject, String body);
-	
+    /**
+     * creates a message
+     *
+     * @param id
+     * @param created
+     * @param toID
+     * @param fromID
+     * @param summary
+     * @param text
+     * @return
+     */
+    Message createMessage(int id, Date created, int toID, int fromID, String summary, String text);
+
+    /**
+     * get message by message ID
+     *
+     * @param id
+     * @return
+     */
+    Message getMessage(int id);
+
+    /**
+     * get messages by sender ID
+     *
+     * @param id
+     * @return
+     */
+    List<Message> getMessagesBySender(int id);
+
+    /**
+     * get messages by recipient ID
+     *
+     * @param id
+     * @return
+     */
+    List<Message> getMessagesByRecipient(int id);
 }

@@ -10,10 +10,15 @@ import edu.xavier.csci260.Phase_1.domain.Employee;
  * Created by Luke on 3/12/2017.
  */
 public interface EmployeeDAO {
-    public List<Employee> findUser(String user_name);
+    List<Employee> findUser(String email);
+    List<Employee> findUser(int id);
+    List<Employee> findUser(Employee employee);
 
-    public void createUser(String user_name, String first_name, String last_name, String password);
+    Employee createUser(int id, String email, String pass, String first, String last, boolean enabled);
 
-    public List<Employee> findAll();
+    Employee removeUser(int id);
+    Employee removeUser(String email);
+
+    List<Employee> findAll();
 
 }

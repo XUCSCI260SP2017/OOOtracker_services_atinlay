@@ -12,8 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Date;
+
+
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -43,9 +44,31 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee addEmployee(int id, String email, String pass, String first, String last, boolean enabled) {
-        Employee e = new Employee(id, email, pass, first, last, true);
-        employeeDAO.createUser(e);
-        return e;
+        Employee employee = null;
+
+        if (this.getEmployee(email).isEmpty()) {
+            employee = new Employee(id, email, pass, first, last, enabled);
+            employeeDAO.createUser(id, email, pass, first, last, enabled);
+        }
+        return employee;
+    }
+
+    /**
+     * add employee
+     *
+     * @param employee
+     * @return employee added
+     */
+    @Override
+    public Employee addEmployee(Employee employee) {
+        return this.addEmployee(
+                employee.getID(),
+                employee.getEmail(),
+                employee.getPassword(),
+                employee.getFirstName(),
+                employee.getLastName(),
+                employee.isEnabled()
+                );
     }
 
     /**
@@ -91,8 +114,8 @@ public class AccessServiceImpl implements AccessService {
     @Override
     public Employee updateEmployee(String email, Employee employee) {
         Employee e = getEmployee(email).get(0);
-        employeeDAO.removeUser(e);
-        employeeDAO.createUser(employee);
+        deleteEmployee(e);
+        addEmployee(employee);
         return employee;
     }
 
@@ -103,8 +126,19 @@ public class AccessServiceImpl implements AccessService {
      * @return
      */
     @Override
-    public List<Employee> deleteEmployee(Employee employee) {
-        return null;
+    public Employee deleteEmployee(Employee employee) {
+        return deleteEmployee(employee.getEmail());
+    }
+
+    /**
+     * deletes employee by ID
+     *
+     * @param ID
+     * @return
+     */
+    @Override
+    public Employee deleteEmployee(int ID) {
+        return employeeDAO.removeUser(ID);
     }
 
     /**
@@ -114,8 +148,16 @@ public class AccessServiceImpl implements AccessService {
      * @return
      */
     @Override
-    public List<Employee> deleteEmployee(String email) {
-        return null;
+    public Employee deleteEmployee(String email) {
+        return employeeDAO.removeUser(email);
+    }
+
+    /**
+     * @return all employees in database
+     */
+    @Override
+    public List<Employee> allEmployees() {
+        return employeeDAO.findAll();
     }
 
     /**
@@ -141,8 +183,8 @@ public class AccessServiceImpl implements AccessService {
      * @return
      */
     @Override
-    public List<Message> getMessage(int id) {
-        return messageDAO.getMessagesByID(id);
+    public Message getMessage(int id) {
+        return messageDAO.getMessage(id);
     }
 
     /**

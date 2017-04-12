@@ -1,5 +1,7 @@
 package edu.xavier.csci260.Phase_1.domain;
 
+import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
  */
 public class Employee {
     private List<Message> inbox;
+    private List<WorkEvent> events;
 
     private int id;
     private String email, firstName, lastName, password;
@@ -25,6 +28,7 @@ public class Employee {
         this.enabled = enabled;
 
         inbox = new ArrayList<Message>();
+        events = new ArrayList<WorkEvent>();
     }
 
     public List<Message> getInbox() {
@@ -35,11 +39,11 @@ public class Employee {
         this.inbox = inbox;
     }
 
-    public int getId() {
+    public int getID() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setID(int id) {
         this.id = id;
     }
 

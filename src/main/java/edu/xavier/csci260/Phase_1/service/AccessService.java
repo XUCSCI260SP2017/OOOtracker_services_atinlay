@@ -1,11 +1,10 @@
 package edu.xavier.csci260.Phase_1.service;
 
 import edu.xavier.csci260.Phase_1.domain.Employee;
-import edu.xavier.csci260.Phase_1.domain.Manager;
 import edu.xavier.csci260.Phase_1.domain.Message;
 import edu.xavier.csci260.Phase_1.domain.WorkEvent;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -25,10 +24,25 @@ public interface AccessService {
      */
 
     /**
-    * add employee
-    */
+     *  add employee
+     *
+     * @param id
+     * @param email
+     * @param pass
+     * @param first
+     * @param last
+     * @param enabled
+     * @return employee added
+     */
     Employee addEmployee(int id, String email, String pass, String first, String last, boolean enabled);
 
+    /**
+     * add employee
+     *
+     * @param employee
+     * @return employee added
+     */
+    Employee addEmployee(Employee employee);
     /**
      * returns employee with given email
      *
@@ -65,14 +79,27 @@ public interface AccessService {
      * @param employee
      * @return
      */
-    List<Employee> deleteEmployee(Employee employee);
+    Employee deleteEmployee(Employee employee);
+
+    /**
+     * deletes employee by ID
+     *
+     * @param ID
+     * @return
+     */
+    Employee deleteEmployee(int ID);
 
     /**
      * deletes employee by email
      * @param email
      * @return
      */
-    List<Employee> deleteEmployee(String email);
+    Employee deleteEmployee(String email);
+
+    /**
+     * returns all employees
+     */
+    List<Employee> allEmployees();
 
     /**
      * ###############################################################
@@ -97,7 +124,7 @@ public interface AccessService {
      * @param id
      * @return
      */
-    List<Message> getMessage(int id);
+    Message getMessage(int id);
 
     /**
      * gets message by sender/recipient ID

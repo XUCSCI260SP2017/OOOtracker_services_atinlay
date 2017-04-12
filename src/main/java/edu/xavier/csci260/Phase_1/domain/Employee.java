@@ -36,6 +36,7 @@ public class Employee {
         return null;
     }
 
+    //remove
     public boolean refreshInbox() {
         //dal.getMessages();
         //if successful

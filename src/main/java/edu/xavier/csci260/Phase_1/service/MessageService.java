@@ -10,13 +10,6 @@ import edu.xavier.csci260.Phase_1.domain.Message;
  */
 public interface MessageService {
 
-    /**
-     * This function takes a message and hashes the time sent with the sender's username to create a unique hash value
-     * for our sql server to identify the message
-     * @param hashMe
-     * @return
-     */
-    public long hashMsg(Message hashMe);
 
     /**
      * This method adds the message to the sql table and should also create call upon the
@@ -26,7 +19,7 @@ public interface MessageService {
      * @param msgBody
      * @return
      */
-    public Message createMessage(Employee fromMe, Employee toYou, String msgBody);
+    public Message createMessage(Employee fromMe, Employee toYou, String msgBody, String subject);
 
 
 

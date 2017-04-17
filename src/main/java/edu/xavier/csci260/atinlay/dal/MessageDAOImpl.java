@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -54,7 +53,7 @@ public class MessageDAOImpl implements MessageDAO {
 	}
 
 	/* (non-Javadoc)
-	 * @see edu.xavier.csci260.atinlay.dal.MessageDAO#createMessage(edu.xavier.csci260.atinlay.domain.Employee, edu.xavier.csci260.atinlay.domain.Employee)
+	 * @see edu.xavier.csci260.atinlay.dal.MessageDAO#createMessage(edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract, edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract)
 	 */
 	// TODO Message UID
 	@Override

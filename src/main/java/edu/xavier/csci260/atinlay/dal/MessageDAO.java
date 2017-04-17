@@ -32,10 +32,6 @@ public interface MessageDAO {
 	// TODO Message UID
 	void createMessage(Message message);
 
-
-	/**
-	 * Custom RowMapper to correctly handle employee requests to the database
-	 */
 	class MessageRowMapper implements RowMapper
 	{
 		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -51,5 +47,4 @@ public interface MessageDAO {
 			return message;
 		}
 	}
-
 }

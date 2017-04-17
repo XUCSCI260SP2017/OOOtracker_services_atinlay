@@ -3,19 +3,23 @@ package edu.xavier.csci260.atinlay.domain;
 import java.io.Serializable;
 
 /**
- * class ___ is a member of the atinlay project.
+ * class ___ is a member of the OOOtracker_services project.
  * <p>
- * Created by Luke on 3/12/2017.
+ * Created by Luke on 4/16/2017.
  */
 public class Employee implements Serializable {
 
-    private Long id;
+    protected Long id;
 
-    private String username, password;
+    protected String username, password;
 
-    private String first_name, last_name;
+    protected String first_name, last_name;
 
-    private boolean enabled;
+    protected boolean enabled;
+
+    protected String manager_id;
+
+    protected Authority authority;
 
     public Employee(Long id, String username, String password, String first_name, String last_name, boolean enabled) {
         this.id = id;
@@ -38,12 +42,12 @@ public class Employee implements Serializable {
     }
 
     public Object[] asList() {
-        return new Object[]{ username, password, first_name, last_name, enabled };
+        return new Object[]{username, password, first_name, last_name, enabled};
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "EmployeeAbstract{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -127,4 +131,36 @@ public class Employee implements Serializable {
     public void setLast_name(String last_name) {
         this.last_name = last_name;
     }
+
+    public String getManager_id() {
+        return manager_id;
+    }
+
+    public void setManager_id(String manager_id) {
+        this.manager_id = manager_id;
+    }
+
+    public Boolean hasAuthority() {
+        return false;
+    }
+
+    /**
+     * THIS METHOD IS NOT TO BE CALLED WITH THE BASIC CLASS. Only call this method with one of the classes that extends
+     * the employee class
+     * @return AuthorityNotSetError
+     */
+    public Authority getAuthority() {
+        throw new AuthorityNotSetError();
+    }
+
+    private class AuthorityNotSetError extends RuntimeException {
+
+        AuthorityNotSetError() {
+            //add logging here. This error was shown because the authority of an employee class was not set.
+            //This means that the employee was initialized as a basic Employee Object instead of a class that extends
+            //employee as is required.
+        }
+    }
 }
+
+

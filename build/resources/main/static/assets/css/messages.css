@@ -16,10 +16,22 @@
 
 #messages table
 {
-	width:90%
+	width:90%;
+}
+
+#messages table tr td a
+{
+	text-decoration:none;
 }
 
 #messages table tr:nth-child(odd)
 {
 	background-color:#86fced;
+}
+
+#readerPane
+{
+	width=40%;
+	height=80%;
+
 }

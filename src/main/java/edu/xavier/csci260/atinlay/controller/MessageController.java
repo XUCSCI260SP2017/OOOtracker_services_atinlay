@@ -17,18 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MessageController
 {
-	@Autowired
 	private EmployeeService employeeService;
-
+	
+	public MessageController(EmployeeService employeeService)
+	{
+		this.employeeService=employeeService;
+	}
+	
 	/*
 	 *this method will handle call in messages.html and give an array of all messages
 	 */
+	 
 	@RequestMapping(value = "/messages")
 	public String messages(Model model)
 	{
-		Employee employee = employeeService.getEmployee("ellisa4@xavier.edu");
-
-		model.addAttribute("messages", employeeService.getInbox(employee)); //find a way to get usernameService
+		model.addAttribute("messages", employeeService.getInbox(employeeService.getEmployee("ellisa4@xavier.edu"))); //find a way to get usernameService
 		return "messages";
 	}
 

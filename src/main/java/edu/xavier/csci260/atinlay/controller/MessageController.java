@@ -23,12 +23,12 @@ public class MessageController
 	/*
 	 *this method will handle call in messages.html and give an array of all messages
 	 */
-	@RequestMapping(value = "/messages/{username}")
-	public String messages(Model model, @PathVariable("username")String username)
+	@RequestMapping(value = "/messages")
+	public String messages(Model model)
 	{
-		Employee employee = employeeService.getEmployee(username);
+		Employee employee = employeeService.getEmployee("ellisa4@xavier.edu");
 
-		model.addAttribute("messages", employeeService.getInbox(	employee)); //find a way to get usernameService
+		model.addAttribute("messages", employeeService.getInbox(employee)); //find a way to get usernameService
 		return "messages";
 	}
 

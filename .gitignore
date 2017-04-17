@@ -6,6 +6,7 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 *.idea
+.idea/
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/tasks.xml
@@ -74,4 +75,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-# End of https://www.gitignore.io/api/gradle,intellij+iml
+.idea/
+build
+build/
+gradle/
+# End of https://www.gitignore.io/api/gradle,intellij+iml.gradle/

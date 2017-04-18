@@ -34,6 +34,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
+    public Employee getEmployeeByID(long ID) {
+        String sql = "SELECT * FROM users WHERE id = ?";
+
+        return (Employee) jdbcTemplate.queryForObject(
+                sql,
+                new Object[] { ID },
+                new EmployeeRowMapper());
+    }
+
+    @Override
     public void createEmployee(Employee employee) {
 
         String sqlStmt = "INSERT INTO users(username, password, first_name, last_name, enabled) VALUES (?, ?, ?, ?, ?)";

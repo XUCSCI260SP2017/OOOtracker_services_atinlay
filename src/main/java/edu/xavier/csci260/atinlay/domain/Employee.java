@@ -13,24 +13,24 @@ public class Employee implements Serializable {
 
     private String username, password;
 
-    private String first_name, last_name;
+    private String firstName, lastName;
 
     private boolean enabled;
 
-    public Employee(Long id, String username, String password, String first_name, String last_name, boolean enabled) {
+    public Employee(Long id, String username, String password, String firstName, String lastName, boolean enabled) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.enabled = enabled;
     }
 
-    public Employee(String username, String password, String first_name, String last_name) {
+    public Employee(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.enabled = true;
     }
 
@@ -38,7 +38,7 @@ public class Employee implements Serializable {
     }
 
     public Object[] asList() {
-        return new Object[]{ username, password, first_name, last_name, enabled };
+        return new Object[]{ username, password, firstName, lastName, enabled };
     }
 
     @Override
@@ -47,8 +47,8 @@ public class Employee implements Serializable {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", enabled=" + enabled +
                 '}';
     }
@@ -64,9 +64,9 @@ public class Employee implements Serializable {
         if (!getId().equals(employee.getId())) return false;
         if (!getUsername().equals(employee.getUsername())) return false;
         if (!getPassword().equals(employee.getPassword())) return false;
-        if (getFirst_name() != null ? !getFirst_name().equals(employee.getFirst_name()) : employee.getFirst_name() != null)
+        if (getFirstName() != null ? !getFirstName().equals(employee.getFirstName()) : employee.getFirstName() != null)
             return false;
-        return getLast_name() != null ? getLast_name().equals(employee.getLast_name()) : employee.getLast_name() == null;
+        return getLastName() != null ? getLastName().equals(employee.getLastName()) : employee.getLastName() == null;
     }
 
     @Override
@@ -74,10 +74,14 @@ public class Employee implements Serializable {
         int result = getId().hashCode();
         result = 31 * result + getUsername().hashCode();
         result = 31 * result + getPassword().hashCode();
-        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);
-        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);
+        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
+        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + (isEnabled() ? 1 : 0);
         return result;
+    }
+
+    public long getID() {
+        return this.id;
     }
 
     public String getUsername() {
@@ -88,7 +92,7 @@ public class Employee implements Serializable {
         this.username = username;
     }
 
-    public void setId(Long id) {
+    public void setID(Long id) {
         this.id = id;
     }
 
@@ -112,19 +116,19 @@ public class Employee implements Serializable {
         this.password = password;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

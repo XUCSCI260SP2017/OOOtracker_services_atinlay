@@ -15,6 +15,8 @@ public interface EmployeeDAO {
 
     Employee getEmployeeByUsername(String username);
 
+    Employee getEmployeeByID(long ID);
+
     void createEmployee(Employee employee);
 
     void removeEmployee(Employee employee);

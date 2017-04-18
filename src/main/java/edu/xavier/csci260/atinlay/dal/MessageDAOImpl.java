@@ -27,7 +27,7 @@ public class MessageDAOImpl implements MessageDAO {
 	 * @see edu.xavier.csci260.atinlay.dal.MessageDAO#getMessagesBySender(java.lang.String)
 	 */
 	@Override
-	public List<Message> getMessagesBySender(String id) {
+	public List<Message> getMessagesBySender(long id) {
 
 		final String sql = "SELECT * FROM messages WHERE from_id = ?";
 
@@ -42,7 +42,7 @@ public class MessageDAOImpl implements MessageDAO {
 	 * @see edu.xavier.csci260.atinlay.dal.MessageDAO#getMessagesByRecipient(java.lang.String)
 	 */
 	@Override
-	public List<Message> getMessagesByRecipient(String id) {
+	public List<Message> getMessagesByRecipient(long id) {
 
 		final String sql = "SELECT * FROM messages WHERE to_id = ?";
 

@@ -1,11 +1,10 @@
 package edu.xavier.csci260.atinlay.controller;
 
 import edu.xavier.csci260.atinlay.domain.Employee;
-import edu.xavier.csci260.atinlay.service.EmployeeService;
+import edu.xavier.csci260.atinlay.service.AccessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MessageController
 {
 	@Autowired
-	private EmployeeService employeeService;
+	private AccessService accessService;
 
 	/*
 	 *this method will handle call in messages.html and give an array of all messages
@@ -26,9 +25,9 @@ public class MessageController
 	@RequestMapping(value = "/messages")
 	public String messages(Model model)
 	{
-		Employee employee = employeeService.getEmployee("ellisa4@xavier.edu");
+		Employee employee = accessService.getEmployee("ellisa4@xavier.edu");
 
-		model.addAttribute("messages", employeeService.getInbox(employee)); //find a way to get usernameService
+		model.addAttribute("messages", accessService.getInbox(employee.getId(), false)); //find a way to get usernameService
 		return "messages";
 	}
 

@@ -15,7 +15,7 @@ public interface MessageDAO {
 	 * @param id
 	 * @return list of messages
 	 */
-	List<Message> getMessagesBySender(String id);
+	List<Message> getMessagesBySender(long id);
 
 	/**
 	 * returns messages that have the specified recipient
@@ -23,7 +23,7 @@ public interface MessageDAO {
 	 * @param id
 	 * @return list of messages
 	 */
-	List<Message> getMessagesByRecipient(String id);
+	List<Message> getMessagesByRecipient(long id);
 
 	/**
 	 * creates a new message

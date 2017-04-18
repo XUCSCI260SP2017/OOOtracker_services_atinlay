@@ -9,53 +9,46 @@ import java.io.Serializable;
  */
 public class Employee implements Serializable {
 
-    protected Long id;
+    private Long id;
 
-    protected String username, password;
+    private String username, password;
 
-    protected String first_name, last_name;
+    private String first_name, last_name;
 
-    protected boolean enabled;
+    private Boolean enabled;
 
-    protected String manager_id;
+    private String manager_id;
 
-    protected Authority authority;
+    private RoleEnum role;
 
-    public Employee(Long id, String username, String password, String first_name, String last_name, boolean enabled) {
-        this.id = id;
+    public void setVars(String username, String password, String first_name, String last_name) {
         this.username = username;
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.enabled = enabled;
     }
 
-    public Employee(String username, String password, String first_name, String last_name) {
-        this.username = username;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(Long id, String username, String password, String first_name, String last_name, Boolean enabled, RoleEnum role) {
+        this.id = id;
+        setVars(username, password, first_name, last_name);
+        this.enabled = enabled;
+        this.role = role;
+    }
+
+    public Employee(String username, String password, String first_name, String last_name, RoleEnum role) {
+        setVars(username, password, first_name, last_name);
+
         this.enabled = true;
+        this.role = role;
     }
 
     public Employee() {
     }
 
     public Object[] asList() {
-        return new Object[]{username, password, first_name, last_name, enabled};
+        return new Object[]{username, password, first_name, last_name, enabled, role};
     }
 
-    @Override
-    public String toString() {
-        return "EmployeeAbstract{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", enabled=" + enabled +
-                '}';
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,23 +57,26 @@ public class Employee implements Serializable {
 
         Employee employee = (Employee) o;
 
-        if (isEnabled() != employee.isEnabled()) return false;
-        if (!getId().equals(employee.getId())) return false;
-        if (!getUsername().equals(employee.getUsername())) return false;
-        if (!getPassword().equals(employee.getPassword())) return false;
-        if (getFirst_name() != null ? !getFirst_name().equals(employee.getFirst_name()) : employee.getFirst_name() != null)
-            return false;
-        return getLast_name() != null ? getLast_name().equals(employee.getLast_name()) : employee.getLast_name() == null;
+        return (getId() != null ? getId().equals(employee.getId()) : employee.getId() == null)
+                && getUsername().equals(employee.getUsername())
+                && getPassword().equals(employee.getPassword())
+                && getFirst_name().equals(employee.getFirst_name())
+                && getLast_name().equals(employee.getLast_name())
+                && (isEnabled() != null ? isEnabled().equals(employee.isEnabled()) : employee.isEnabled() == null)
+                && getManager_id().equals(employee.getManager_id())
+                && role == employee.role;
     }
 
     @Override
     public int hashCode() {
-        int result = getId().hashCode();
+        int result = getId() != null ? getId().hashCode() : 0;
         result = 31 * result + getUsername().hashCode();
         result = 31 * result + getPassword().hashCode();
-        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);
-        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);
-        result = 31 * result + (isEnabled() ? 1 : 0);
+        result = 31 * result + getFirst_name().hashCode();
+        result = 31 * result + getLast_name().hashCode();
+        result = 31 * result + (isEnabled() != null ? isEnabled().hashCode() : 0);
+        result = 31 * result + getManager_id().hashCode();
+        result = 31 * result + role.hashCode();
         return result;
     }
 
@@ -96,7 +92,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
@@ -140,26 +136,41 @@ public class Employee implements Serializable {
         this.manager_id = manager_id;
     }
 
-    public Boolean hasAuthority() {
-        return false;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    /**
-     * THIS METHOD IS NOT TO BE CALLED WITH THE BASIC CLASS. Only call this method with one of the classes that extends
-     * the employee class
-     * @return AuthorityNotSetError
-     */
-    public Authority getAuthority() {
-        throw new AuthorityNotSetError();
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
-    private class AuthorityNotSetError extends RuntimeException {
+    public RoleEnum getRole() {
+        return role;
+    }
 
-        AuthorityNotSetError() {
-            //add logging here. This error was shown because the authority of an employee class was not set.
-            //This means that the employee was initialized as a basic Employee Object instead of a class that extends
-            //employee as is required.
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
+
+    public void setRole(String role) {
+        switch (role) {
+            case "ROLE_WORKER":
+                this.role = RoleEnum.WORKER;
+
+            case "ROLE_MANAGER":
+                this.role = RoleEnum.MANAGER;
+
+            case "ROLE_HR":
+                this.role = RoleEnum.HR;
+
+            default:
+                throw new RoleDoesNotExistError();
         }
+    }
+
+    private class RoleDoesNotExistError extends RuntimeException {
+
+        // Log that the role does not exist. This probably happened in the sql statement
     }
 }
 

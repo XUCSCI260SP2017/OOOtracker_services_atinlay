@@ -1,13 +1,13 @@
 package edu.xavier.csci260.atinlay.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Message implements Serializable {
 
 	private Long id;
 
-	private Date created;
+	private Timestamp created;
 
 	private String from, to;
 
@@ -124,11 +124,11 @@ public class Message implements Serializable {
 		this.id = id;
 	}
 
-	public Date getCreated() {
+	public Timestamp getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
 }

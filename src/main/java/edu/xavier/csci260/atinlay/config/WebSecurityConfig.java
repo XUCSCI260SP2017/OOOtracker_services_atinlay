@@ -24,21 +24,12 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+//@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     DataSource dataSource;
-
-    private JdbcTemplate jdbcTemplate;
-    private EmployeeDAO employeeDAO;
-
-    @Autowired
-    public WebSecurityConfig(JdbcTemplate jdbcTemplate, EmployeeDAO employeeDAO) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.employeeDAO = employeeDAO;
-    }
 
     /**
      * allows accessing css before login
@@ -51,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/includes/**", "/assets/**");
     }
-
 
     /**
      * config authorization and authentication
@@ -68,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery(
                         "select username,password,enabled from users where username=?")
                 .authoritiesByUsernameQuery(
-                        "select username, authority from authorities where username=?");
+                        "select username, role from users where username=?");
     }
 
     /**
@@ -82,15 +72,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/human-resources/").hasRole("HR")
-                    .antMatchers("/manager/").hasRole("MANAGER")
+                    .antMatchers("/human-resources/**").hasRole("HR")
+                    .antMatchers("/manager/**").hasRole("MANAGER")
+                    .and()
+                .authorizeRequests()
                     .antMatchers("/", "/home", "/login").permitAll()
                     .antMatchers("/includes/**", "/assets/**").authenticated()
                     .anyRequest().authenticated()
-                .and()
+                    .and()
                 .formLogin()
                     .loginPage("/login")
-                    .usernameParameter("username").passwordParameter("password")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
                     .defaultSuccessUrl("/hello", true).permitAll()
                     .and()
                 .logout()

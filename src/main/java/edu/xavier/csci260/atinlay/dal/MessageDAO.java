@@ -42,7 +42,7 @@ public interface MessageDAO {
 			message.setTo(rs.getString("to_id"));
 			message.setSubject(rs.getString("subject"));
 			message.setBody(rs.getString("body"));
-			message.setCreated(rs.getDate("created"));
+			message.setCreated(rs.getTimestamp("created"));
 
 			return message;
 		}

@@ -22,18 +22,64 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class ApplicationTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void loginWithValidUserThenAuthenticated() throws Exception {
+    public void loginWithValidUserThenAuthenticatedWithRoleManager() throws Exception {
         FormLoginRequestBuilder login = formLogin()
-                .user("mcnameel@xavier.edu")
+                .user("manager")
                 .password("password");
 
-        mockMvc.perform(login)
-                .andExpect(authenticated().withUsername("mcnameel@xavier.edu"));
+        mockMvc
+                .perform(login)
+                .andExpect(authenticated()
+                        .withUsername("manager")
+                        .withRoles("MANAGER"));
+    }
+
+    @Test
+    public void loginWithValidUserThenAuthenticatedWithRoleHR() throws Exception {
+        FormLoginRequestBuilder login = formLogin()
+                .user("hr")
+                .password("password");
+
+        mockMvc
+                .perform(login)
+                .andExpect(authenticated()
+                        .withUsername("hr")
+                        .withRoles("HR"));
+    }
+
+    @Test
+    public void loginWithValidUserThenAuthenticatedWithRoleWorker() throws Exception {
+        FormLoginRequestBuilder login = formLogin()
+                .user("worker")
+                .password("password");
+
+        mockMvc
+                .perform(login)
+                .andExpect(authenticated()
+                        .withUsername("worker")
+                        .withRoles("WORKER"));
+    }
+
+    @WithMockUser(roles = "HR")
+    @Test
+    public void requestPageForbidden() throws Exception {
+
+        mockMvc.perform(get("/manager/forTesting"))
+                .andExpect(status()
+                    .isForbidden());
+    }
+
+    @WithMockUser(roles = "MANAGER")
+    @Test
+    public void requestPageWithRole() throws Exception {
+
+        mockMvc.perform(get("/manager/forTesting"))
+                .andExpect(status()
+                    .isOk());
     }
 
     @Test

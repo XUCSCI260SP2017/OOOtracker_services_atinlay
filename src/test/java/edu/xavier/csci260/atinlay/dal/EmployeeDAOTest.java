@@ -1,6 +1,7 @@
 package edu.xavier.csci260.atinlay.dal;
 
 import edu.xavier.csci260.atinlay.domain.Employee;
+import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,19 @@ public class EmployeeDAOTest {
             "password",
             "Luke",
             "McNamee",
-            true);
+            true,
+            RoleEnum.WORKER
+    );
 
-    // EmployeeAbstract "Not In DataBase"
+    // Employee "Not In DataBase"
     private Employee NIDB_EXPECTED = new Employee(
             new Long(3),
             "Not@in.database",
             "password",
             "NotIn",
             "Database",
-            true
+            true,
+            RoleEnum.WORKER
     );
 
     @Test
@@ -72,7 +76,7 @@ public class EmployeeDAOTest {
 
         Boolean success = false;
 
-        Employee DELETE_ME = new Employee("test", "test", "test", "test");
+        Employee DELETE_ME = new Employee("test", "test", "test", "test", RoleEnum.WORKER);
 
         sut.createEmployee(DELETE_ME);
 

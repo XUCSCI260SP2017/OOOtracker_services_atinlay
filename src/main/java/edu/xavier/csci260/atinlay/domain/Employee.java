@@ -17,13 +17,16 @@ public class Employee implements Serializable {
 
     private boolean enabled;
 
-    public Employee(Long id, String username, String password, String firstName, String lastName, boolean enabled) {
+    private RoleEnum role;
+
+    public Employee(Long id, String username, String password, String firstName, String lastName, boolean enabled, RoleEnum role) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
+        this.role = role;
     }
 
     public Employee(String username, String password, String firstName, String lastName) {

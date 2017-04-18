@@ -4,10 +4,7 @@ import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
 import edu.xavier.csci260.atinlay.dal.EmployeeDAOImpl;
 import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import edu.xavier.csci260.atinlay.dal.MessageDAOImpl;
-import edu.xavier.csci260.atinlay.domain.Employee;
-import edu.xavier.csci260.atinlay.domain.Message;
-import edu.xavier.csci260.atinlay.domain.WorkEvent;
-import edu.xavier.csci260.atinlay.domain.Manager;
+import edu.xavier.csci260.atinlay.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -218,7 +215,7 @@ public class AccessServiceImpl implements AccessService {
     public WorkEvent approveEvent(Employee sender, WorkEvent event, boolean isApproved) {
         WorkEvent e = null;
 
-        if (sender instanceof Manager) {
+        if (sender.getRole() == RoleEnum.MANAGER) {
             if (isApproved) {
                 event.approve();
                 e = event;

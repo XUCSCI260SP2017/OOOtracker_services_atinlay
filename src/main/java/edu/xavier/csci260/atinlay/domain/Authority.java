@@ -10,7 +10,7 @@ package edu.xavier.csci260.atinlay.domain;
  */
 public class Authority {
 
-    Long id;
+    private Long id;
 
     private String username, role;
 

@@ -5,7 +5,7 @@ package edu.xavier.csci260.atinlay.domain;
  */
 public class Manager extends Employee {
 
-    public Manager(int id, String email, String pass, String first, String last, boolean enabled) {
+    public Manager(long id, String email, String pass, String first, String last, boolean enabled) {
         super(id, email, pass, first, last, enabled);
     }
 }

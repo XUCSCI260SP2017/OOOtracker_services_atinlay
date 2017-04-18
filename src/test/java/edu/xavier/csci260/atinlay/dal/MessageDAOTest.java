@@ -30,12 +30,12 @@ public class MessageDAOTest {
         List<Message> messages = sut.getMessagesBySender("mcnameel@xavier.edu");
 
         assertEquals(
-                "[Message{id=110, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Is this secure?'}]",
+                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
+                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
+                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}]",
                 messages.toString());
     }
 
@@ -44,14 +44,14 @@ public class MessageDAOTest {
         List<Message> messages = sut.getMessagesByRecipient("ellisa4@xavier.edu");
 
         assertEquals(
-                "[Message{id=110, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Is this secure?'}, " +
-                        "Message{id=113, created=2017-04-16, from='test', to='ellisa4@xavier.edu', " +
-                        "body='test', subject='test'}]",
+                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
+                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
+                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}, " +
+                        "Message{id=119, created=2017-04-18 17:33:48.385, from='test', " +
+                        "to='ellisa4@xavier.edu', body='test', subject='test'}]",
                 messages.toString());
     }
 
@@ -63,14 +63,14 @@ public class MessageDAOTest {
         List<Message> messages = sut.getMessagesByRecipient("ellisa4@xavier.edu");
 
         assertEquals(
-                "[Message{id=110, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12, from='mcnameel@xavier.edu', to='ellisa4@xavier.edu', " +
-                        "body='This message is for Joe', subject='Is this secure?'}, " +
-                        "Message{id=113, created=2017-04-16, from='test', to='ellisa4@xavier.edu', " +
-                        "body='test', subject='test'}]",
+                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
+                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
+                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
+                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}, " +
+                        "Message{id=119, created=2017-04-18 17:33:48.385, from='test', " +
+                        "to='ellisa4@xavier.edu', body='test', subject='test'}]",
                 messages.toString());
     }
 }

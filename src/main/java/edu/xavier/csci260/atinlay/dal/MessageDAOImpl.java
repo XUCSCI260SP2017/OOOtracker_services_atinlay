@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -53,9 +52,21 @@ public class MessageDAOImpl implements MessageDAO {
 		);
 	}
 
+	@Override
+	public List<Message> getMessageById(Long id) {
+
+		final String sql = "SELECT * FROM messages WHERE id = ?";
+
+		return jdbcTemplate.query(
+				sql,
+				new Object[]{ id },
+				new MessageRowMapper()
+		);
+	}
+
 	/* (non-Javadoc)
-	 * @see edu.xavier.csci260.atinlay.dal.MessageDAO#createMessage(edu.xavier.csci260.atinlay.domain.Employee, edu.xavier.csci260.atinlay.domain.Employee)
-	 */
+         * @see edu.xavier.csci260.atinlay.dal.MessageDAO#createMessage(edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract, edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract)
+         */
 	// TODO Message UID
 	@Override
 	public void createMessage(Message message) {

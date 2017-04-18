@@ -13,22 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Controller handles messageCalls in html
  * Created by Andre Ellis on 04/06/2017
  */
-
 @Controller
-public class MessageController
-{
+public class MessageController {
 	@Autowired
 	private EmployeeService employeeService;
 
 	/*
 	 *this method will handle call in messages.html and give an array of all messages
 	 */
-	@RequestMapping(value = "/messages")
-	public String messages(Model model)
+	@RequestMapping(value = "/messages/{username}")
+	public String messages(Model model, @PathVariable("username")String username)
 	{
-		Employee employee = employeeService.getEmployee("ellisa4@xavier.edu");
+		Employee employee = employeeService.getEmployee(username);
 
-		model.addAttribute("messages", employeeService.getInbox(employee)); //find a way to get usernameService
+		model.addAttribute("messages", employeeService.getInbox(	employee)); //find a way to get usernameService
 		return "messages";
 	}
 

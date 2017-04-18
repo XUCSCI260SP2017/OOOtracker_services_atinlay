@@ -25,6 +25,8 @@ public interface MessageDAO {
 	 */
 	List<Message> getMessagesByRecipient(String id);
 
+	List<Message> getMessageById(Long id);
+
 	/**
 	 * creates a new message
 	 * @param message
@@ -32,10 +34,6 @@ public interface MessageDAO {
 	// TODO Message UID
 	void createMessage(Message message);
 
-
-	/**
-	 * Custom RowMapper to correctly handle employee requests to the database
-	 */
 	class MessageRowMapper implements RowMapper
 	{
 		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -46,10 +44,9 @@ public interface MessageDAO {
 			message.setTo(rs.getString("to_id"));
 			message.setSubject(rs.getString("subject"));
 			message.setBody(rs.getString("body"));
-			message.setCreated(rs.getDate("created"));
+			message.setCreated(rs.getTimestamp("created"));
 
 			return message;
 		}
 	}
-
 }

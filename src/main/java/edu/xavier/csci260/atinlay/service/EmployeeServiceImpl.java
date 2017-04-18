@@ -7,6 +7,7 @@ import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
 import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import edu.xavier.csci260.atinlay.domain.Employee;
 import edu.xavier.csci260.atinlay.domain.Message;
+import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,18 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 * @see edu.xavier.csci260.atinlay.service.EmployeeService#createEmplyee()
 	 */
 	@Override
-	public void createEmplyee(String username, String first_name, String last_name, String password) {
-		employeeDAO.createEmployee(new Employee(username, first_name, last_name, password));
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.xavier.csci260.atinlay.service.EmployeeService#pushEmployee()
-	 */
-	// TODO Not sure what this is for
-	@Override
-	public boolean pushEmployee() {
-		// TODO Auto-generated method stub
-		return false;
+	public void createEmployee(String username, String first_name, String last_name, String password, String manager_id, RoleEnum role) {
+		employeeDAO.createEmployee(new Employee(username, password, first_name, last_name, role));
 	}
 
 	/* (non-Javadoc)

@@ -30,7 +30,8 @@ public class EmployeeDAOImpl implements EmployeeDAO {
         return (Employee) jdbcTemplate.queryForObject(
                 sql,
                 new Object[] { username },
-                new EmployeeRowMapper());
+                new EmployeeRowMapper()
+        );
     }
 
     @Override

@@ -1,14 +1,16 @@
 package edu.xavier.csci260.atinlay.dal;
 
 import edu.xavier.csci260.atinlay.domain.Employee;
+import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 /**
  * class ___ is a member of the OOOtracker_services project.
@@ -29,7 +31,8 @@ public class EmployeeDAOTest {
             "password",
             "Luke",
             "McNamee",
-            true
+            true,
+            RoleEnum.WORKER
     );
 
     // Employee "Not In DataBase"
@@ -39,7 +42,8 @@ public class EmployeeDAOTest {
             "password",
             "NotIn",
             "Database",
-            true
+            true,
+            RoleEnum.WORKER
     );
 
     @Test
@@ -47,7 +51,6 @@ public class EmployeeDAOTest {
         Employee LUKE_ACTUAL = sut.getEmployeeByUsername("mcnameel@xavier.edu");
 
         assertTrue(LUKE_EXPECTED.equals(LUKE_ACTUAL));
-
     }
 
     @Test
@@ -61,13 +64,7 @@ public class EmployeeDAOTest {
     @Test
     public void createEmployeeDotEquals() throws Exception {
 
-        sut.createEmployee(
-                new Employee(
-                    NIDB_EXPECTED.getUsername(),
-                    NIDB_EXPECTED.getPassword(),
-                    NIDB_EXPECTED.getFirst_name(),
-                    NIDB_EXPECTED.getLast_name())
-        );
+        sut.createEmployee(NIDB_EXPECTED);
 
         Employee LUKE_ACTUAL = sut.getEmployeeByUsername(NIDB_EXPECTED.getUsername());
 
@@ -79,13 +76,22 @@ public class EmployeeDAOTest {
 
         Boolean success = false;
 
-        sut.createEmployee(new Employee("test", "test", "test", "test"));
+        Employee DELETE_ME = new Employee("test", "test", "test", "test", RoleEnum.WORKER);
 
-        sut.removeEmployee(NIDB_EXPECTED);
+        sut.createEmployee(DELETE_ME);
 
-        Employee ACTUAL = sut.getEmployeeByUsername("test");
+        sut.removeEmployee(DELETE_ME);
 
-        assertTrue(ACTUAL != null);
+        try {
+
+            Employee ACTUAL = sut.getEmployeeByUsername("test");
+        }
+        catch (EmptyResultDataAccessException e) {
+
+            success = true;
+        }
+
+        assertTrue(success);
     }
 
     @Test

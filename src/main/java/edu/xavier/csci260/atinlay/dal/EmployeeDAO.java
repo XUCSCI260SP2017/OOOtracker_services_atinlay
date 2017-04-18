@@ -22,9 +22,9 @@ public interface EmployeeDAO {
     /**
      * Custom RowMapper to correctly handle employee requests to the database
      */
-    class EmployeeRowMapper implements RowMapper
-    {
+    class EmployeeRowMapper implements RowMapper {
         public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+
             Employee employee = new Employee();
 
             employee.setId(rs.getLong("id"));
@@ -33,6 +33,7 @@ public interface EmployeeDAO {
             employee.setFirst_name(rs.getString("first_name"));
             employee.setLast_name(rs.getString("last_name"));
             employee.setEnabled(rs.getBoolean("enabled"));
+            employee.setRole(rs.getString("role"));
 
             return employee;
         }

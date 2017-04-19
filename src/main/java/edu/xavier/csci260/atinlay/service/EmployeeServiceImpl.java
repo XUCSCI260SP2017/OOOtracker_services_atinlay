@@ -42,7 +42,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	@Override
 	public List<Message> getNewMessages() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -58,7 +57,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee getEmployee(String username) {
-		// TODO Auto-generated method stub
 		return employeeDAO.getEmployeeByUsername(username);
 	}
 

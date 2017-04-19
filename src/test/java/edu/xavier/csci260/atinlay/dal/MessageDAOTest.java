@@ -27,50 +27,42 @@ public class MessageDAOTest {
 
     @Test
     public void getMessagesBySender() throws Exception {
-        List<Message> messages = sut.getMessagesBySender("mcnameel@xavier.edu");
+        List<Message> messages = sut.getMessagesBySender("manager");
 
         assertEquals(
-                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}]",
+                "[Message{id=113, created=2014-07-10 14:35:00.0, from='manager', to='worker', " +
+                        "body='This message is for Rob', subject='Hello Luke'}, " +
+                        "Message{id=115, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
+                        "body='This message is for Rob', subject='Is this secure?'}]",
                 messages.toString());
     }
 
     @Test
     public void getMessagesByRecipient() throws Exception {
-        List<Message> messages = sut.getMessagesByRecipient("ellisa4@xavier.edu");
+        List<Message> messages = sut.getMessagesByRecipient("hr");
 
         assertEquals(
-                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}, " +
-                        "Message{id=119, created=2017-04-18 17:33:48.385, from='test', " +
-                        "to='ellisa4@xavier.edu', body='test', subject='test'}]",
+                "[Message{id=115, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
+                        "body='This message is for Rob', subject='Is this secure?'}, " +
+                        "Message{id=117, created=2014-07-12 10:00:00.0, from='worker', to='hr', " +
+                        "body='This message is for Joe', subject='Greetings Joe'}]",
                 messages.toString());
     }
 
     @Test
     public void createMessage() throws Exception {
 
-        sut.createMessage(new Message("test", "ellisa4@xavier.edu", "test", "test"));
+        Message Actual = new Message("test", "worker", "test", "test");
 
-        List<Message> messages = sut.getMessagesByRecipient("ellisa4@xavier.edu");
+        sut.createMessage(Actual);
 
-        assertEquals(
-                "[Message{id=110, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Hello Joe'}, " +
-                        "Message{id=111, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Greetings Joe'}, " +
-                        "Message{id=112, created=2014-07-12 10:00:00.0, from='mcnameel@xavier.edu', " +
-                        "to='ellisa4@xavier.edu', body='This message is for Joe', subject='Is this secure?'}, " +
-                        "Message{id=119, created=2017-04-18 17:33:48.385, from='test', " +
-                        "to='ellisa4@xavier.edu', body='test', subject='test'}]",
-                messages.toString());
+        List<Message> messages = sut.getMessagesByRecipient("worker");
+
+        Message message = messages.get(messages.size()-1);
+
+        Actual.setCreated(message.getCreated());
+        Actual.setId(message.getId());
+
+        assertEquals(Actual, message);
     }
 }

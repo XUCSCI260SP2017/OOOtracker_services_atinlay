@@ -67,7 +67,6 @@ public class MessageDAOImpl implements MessageDAO {
 	/* (non-Javadoc)
          * @see edu.xavier.csci260.atinlay.dal.MessageDAO#createMessage(edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract, edu.xavier.csci260.atinlay.domain.EmployeeModels.EmployeeAbstract)
          */
-	// TODO Message UID
 	@Override
 	public void createMessage(Message message) {
 

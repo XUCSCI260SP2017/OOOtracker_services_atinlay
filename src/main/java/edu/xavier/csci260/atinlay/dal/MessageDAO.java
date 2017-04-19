@@ -31,7 +31,6 @@ public interface MessageDAO {
 	 * creates a new message
 	 * @param message
 	 */
-	// TODO Message UID
 	void createMessage(Message message);
 
 	class MessageRowMapper implements RowMapper

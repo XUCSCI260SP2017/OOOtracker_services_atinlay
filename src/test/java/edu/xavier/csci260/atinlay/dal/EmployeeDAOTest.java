@@ -25,14 +25,14 @@ public class EmployeeDAOTest {
     @Autowired
     private EmployeeDAO sut;
 
-    private Employee LUKE_EXPECTED = new Employee(
-            new Long(2),
-            "mcnameel@xavier.edu",
+    private Employee MANAGER_EXPECTED = new Employee(
+            new Long(4),
+            "manager",
             "password",
-            "Luke",
-            "McNamee",
+            "user",
+            "user",
             true,
-            RoleEnum.WORKER
+            RoleEnum.MANAGER
     );
 
     // Employee "Not In DataBase"
@@ -48,17 +48,17 @@ public class EmployeeDAOTest {
 
     @Test
     public void getEmployeeByUsernameDotEquals() throws Exception {
-        Employee LUKE_ACTUAL = sut.getEmployeeByUsername("mcnameel@xavier.edu");
+        Employee MANAGER_ACTUAL = sut.getEmployeeByUsername("manager");
 
-        assertTrue(LUKE_EXPECTED.equals(LUKE_ACTUAL));
+        assertTrue(MANAGER_EXPECTED.equals(MANAGER_ACTUAL));
     }
 
     @Test
     public void getEmployeeByUsernameToString() throws Exception {
 
-        Employee LUKE_ACTUAL = sut.getEmployeeByUsername("mcnameel@xavier.edu");
+        Employee MANAGER_ACTUAL = sut.getEmployeeByUsername("manager");
 
-        assertEquals(LUKE_EXPECTED.toString(), LUKE_ACTUAL.toString());
+        assertEquals(MANAGER_EXPECTED.toString(), MANAGER_ACTUAL.toString());
     }
 
     @Test
@@ -66,9 +66,11 @@ public class EmployeeDAOTest {
 
         sut.createEmployee(NIDB_EXPECTED);
 
-        Employee LUKE_ACTUAL = sut.getEmployeeByUsername(NIDB_EXPECTED.getUsername());
+        Employee NIDB_ACTUAL = sut.getEmployeeByUsername(NIDB_EXPECTED.getUsername());
 
-        assertTrue(NIDB_EXPECTED.equals(LUKE_ACTUAL));
+        NIDB_ACTUAL.setId(NIDB_EXPECTED.getId());
+
+        assertEquals(NIDB_EXPECTED, NIDB_ACTUAL);
     }
 
     @Test
@@ -101,10 +103,10 @@ public class EmployeeDAOTest {
 
         sut.createEmployee(NIDB_EXPECTED);
 
-        Employee LUKE_ACTUAL = sut.getEmployeeByUsername(NIDB_EXPECTED.getUsername());
+        Employee NIDB_ACTUAL = sut.getEmployeeByUsername(NIDB_EXPECTED.getUsername());
 
-        NIDB_EXPECTED.setId(new Long(4));
+        NIDB_EXPECTED.setId(NIDB_ACTUAL.getId());
 
-        assertEquals(NIDB_EXPECTED.toString(), LUKE_ACTUAL.toString());
+        assertEquals(NIDB_EXPECTED.toString(), NIDB_ACTUAL.toString());
     }
 }

@@ -8,13 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 /**
  * Controller handles messageCalls in html
  * Created by Andre Ellis on 04/06/2017
  */
 @Controller
 public class MessageController {
+
 	@Autowired
 	private EmployeeService employeeService;
 
@@ -29,6 +29,4 @@ public class MessageController {
 		model.addAttribute("messages", employeeService.getInbox(	employee)); //find a way to get usernameService
 		return "messages";
 	}
-
-
 }

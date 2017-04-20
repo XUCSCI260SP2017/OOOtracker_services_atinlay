@@ -21,13 +21,6 @@ public class Employee implements Serializable {
 
     private RoleEnum role;
 
-    public void setVars(String username, String password, String first_name, String last_name) {
-        this.username = username;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
-
     public Employee(Long id, String username, String password, String first_name, String last_name, Boolean enabled, RoleEnum role) {
         this.id = id;
         setVars(username, password, first_name, last_name);
@@ -45,26 +38,41 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
+    private void setVars(String username, String password, String first_name, String last_name) {
+        this.username = username;
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
     public Object[] asList() {
         return new Object[]{username, password, first_name, last_name, enabled, role};
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Employee employee = (Employee) o;
 
-        return (getId() != null ? getId().equals(employee.getId()) : employee.getId() == null)
-                && getUsername().equals(employee.getUsername())
-                && getPassword().equals(employee.getPassword())
-                && getFirst_name().equals(employee.getFirst_name())
-                && getLast_name().equals(employee.getLast_name())
-                && (isEnabled() != null ? isEnabled().equals(employee.isEnabled()) : employee.isEnabled() == null)
-                && getManager_id().equals(employee.getManager_id())
-                && role == employee.role;
+        if (getId() != null ? !getId().equals(employee.getId()) : employee.getId() != null)
+            return false;
+        if (!getUsername().equals(employee.getUsername()))
+            return false;
+        if (!getPassword().equals(employee.getPassword()))
+            return false;
+        if (!getFirst_name().equals(employee.getFirst_name()))
+            return false;
+        if (!getLast_name().equals(employee.getLast_name()))
+            return false;
+        if (getEnabled() != null ? !getEnabled().equals(employee.getEnabled()) : employee.getEnabled() != null)
+            return false;
+        if (getManager_id() != null ? !getManager_id().equals(employee.getManager_id()) : employee.getManager_id() != null)
+            return false;
+        return getRole() == employee.getRole();
     }
 
     @Override
@@ -74,9 +82,9 @@ public class Employee implements Serializable {
         result = 31 * result + getPassword().hashCode();
         result = 31 * result + getFirst_name().hashCode();
         result = 31 * result + getLast_name().hashCode();
-        result = 31 * result + (isEnabled() != null ? isEnabled().hashCode() : 0);
-        result = 31 * result + getManager_id().hashCode();
-        result = 31 * result + role.hashCode();
+        result = 31 * result + (getEnabled() != null ? getEnabled().hashCode() : 0);
+        result = 31 * result + (getManager_id() != null ? getManager_id().hashCode() : 0);
+        result = 31 * result + getRole().hashCode();
         return result;
     }
 
@@ -156,22 +164,28 @@ public class Employee implements Serializable {
         switch (role) {
             case "ROLE_WORKER":
                 this.role = RoleEnum.WORKER;
-
+                break;
             case "ROLE_MANAGER":
                 this.role = RoleEnum.MANAGER;
-
+                break;
             case "ROLE_HR":
                 this.role = RoleEnum.HR;
-
+                break;
             default:
-                throw new RoleDoesNotExistError();
+                throw new RoleDoesNotExistError(role);
         }
     }
 
+    public String getRoleAsString() {
+        return role.toString();
+    }
+
+
     private class RoleDoesNotExistError extends RuntimeException {
 
-        // Log that the role does not exist. This probably happened in the sql statement
+        RoleDoesNotExistError(String msg) {
+            // Log that the role does not exist. This probably happened in the sql statement
+            //System.out.print(msg);
+        }
     }
 }
-
-

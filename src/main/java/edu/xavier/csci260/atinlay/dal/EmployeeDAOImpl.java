@@ -37,14 +37,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void createEmployee(Employee employee) {
 
-        String sqlStmt = "INSERT INTO users(username, password, first_name, last_name, enabled) VALUES (?, ?, ?, ?, ?)";
+        String sqlStmt = "INSERT INTO users(username, password, first_name, last_name, enabled, role) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         jdbcTemplate.update(sqlStmt,
                 employee.getUsername(),
                 employee.getPassword(),
                 employee.getFirst_name(),
                 employee.getLast_name(),
-                employee.isEnabled());
+                employee.isEnabled(),
+                employee.getRole().toString());
     }
 
     @Override

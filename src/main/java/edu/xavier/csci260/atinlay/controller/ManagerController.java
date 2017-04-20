@@ -13,7 +13,6 @@ import javax.annotation.security.RolesAllowed;
  */
 @Controller
 @RolesAllowed(value = "MANAGER")
-//@RequestMapping(value = "/manager")
 public class ManagerController {
 
 	@RequestMapping(value = "/manager/forTesting")
@@ -21,6 +20,4 @@ public class ManagerController {
 	public String messages() {
 		return "forTesting";
 	}
-
-
 }

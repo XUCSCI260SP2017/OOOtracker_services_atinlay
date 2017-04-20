@@ -15,6 +15,6 @@ public enum RoleEnum {
 
     @Override
     public String toString() {
-        return this.name();
+        return "ROLE_" + super.toString();
     }
 }

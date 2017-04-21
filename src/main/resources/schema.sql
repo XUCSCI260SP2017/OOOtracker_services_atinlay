@@ -19,4 +19,3 @@ CREATE TABLE messages(
     subject VARCHAR(255),
     created DATETIME DEFAULT CURRENT_TIMESTAMP
     );
-

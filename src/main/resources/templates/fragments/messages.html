@@ -25,21 +25,21 @@
 	</div>
 	
 	<div th:fragment="hasMessages">
-		<div id="readerPane"></div>
+		<div id="readerPane">
+
+		</div>
 
 		<div id="messages">
 			<table>
 				<tr>
-					<th>Subject</th>
-					<th>From</th>
-					<th>Date</th>
+						<th>Subject</th>
+						<th>Sender</th>
 				</tr>
 
 				<tr th:each="message : ${messages}">
 					<!--Above is an each statement that will make a new row for each Message given username has-->
-					<td th:text="${message.subject}">onions</td>
-					<td th:text="${message.from}">poop </td>
-					<td th:text="${message.created}"> hello</td>
+					<td><a th:text="${message.getSubject()}"> </a></td>
+					<td th:text="${message.getFrom()}"> </td>
 				</tr>
 			</table>
 		</div>

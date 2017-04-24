@@ -151,7 +151,7 @@ public interface AccessService {
      * @param isApproved T if offday is approved
      * @return
      */
-    TimeOffResponse approveEvent(Employee sender, TimeOffReq event, boolean isApproved);
+    TimeOffResponse approveEvent(Employee sender, TimeOffReq event, String description, String reason, boolean isApproved);
 
 
 }

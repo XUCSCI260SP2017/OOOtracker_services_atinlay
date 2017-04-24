@@ -163,18 +163,16 @@ public class AccessServiceImpl implements AccessService {
 
     /**
      * create a message
-     *
-     * @param id
-     * @param created
-     * @param toID
-     * @param fromID
+     * @param toUser
+     * @param fromUser
      * @param summary
      * @param text
      * @return
      */
     @Override
-    public Message createMessage(long id, Date created, long toID, long fromID, String summary, String text) {
-        return messageDAO.createMessage(id, created, toID, fromID, summary, text);
+    public void createMessage(String fromUser,String toUser, String summary, String text) {
+        Message message = new Message(fromUser,toUser,text,summary);
+        messageDAO.createMessage(message);
     }
 
     /**
@@ -185,7 +183,7 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Message getMessage(long id) {
-        return messageDAO.getMessage(id);
+        return messageDAO.getMessageById(id).get(0);
     }
 
     /**

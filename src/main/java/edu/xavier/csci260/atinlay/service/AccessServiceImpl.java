@@ -4,14 +4,15 @@ import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
 import edu.xavier.csci260.atinlay.dal.EmployeeDAOImpl;
 import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import edu.xavier.csci260.atinlay.dal.MessageDAOImpl;
-import edu.xavier.csci260.atinlay.domain.*;
+import edu.xavier.csci260.atinlay.domain.Employee;
+import edu.xavier.csci260.atinlay.domain.Message;
+import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffReq;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -174,15 +175,15 @@ public class AccessServiceImpl implements AccessService {
      * T if sender
      * F if recipient
      *
-     * @param id
+     * @param username
      * @param isSender
      * @return
      */
     @Override
-    public List<Message> getInbox(long id, boolean isSender) {
+    public List<Message> getInbox(String username, boolean isSender) {
         // if isSender getMessageBySender
         // else getMessageByRecipient
-        return isSender ? messageDAO.getMessagesBySender(id) : messageDAO.getMessagesByRecipient(id);
+        return isSender ? messageDAO.getMessagesBySender(username) : messageDAO.getMessagesByRecipient(username);
     }
 
 

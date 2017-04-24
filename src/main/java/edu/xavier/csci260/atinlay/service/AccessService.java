@@ -61,13 +61,6 @@ public interface AccessService {
     Employee getEmployee(Employee e);
 
     /**
-     * returns employee by id number
-     * @param id
-     * @return
-     */
-    Employee getEmployee(long id);
-
-    /**
      * grab employee by email, replace it with new employee
      *
      * @param email
@@ -81,15 +74,6 @@ public interface AccessService {
      * @return
      */
     Employee deleteEmployee(Employee employee);
-
-    /**
-     * deletes employee by ID
-     *
-     * @param ID
-     * @return
-     */
-    Employee deleteEmployee(long ID);
-
     /**
      * deletes employee by email
      * @param email
@@ -110,13 +94,13 @@ public interface AccessService {
 
     /**
      * create a message
-     * @param toID
-     * @param fromID
+     * @param fromUser
+     * @param toUser
      * @param summary
      * @param text
      * @return
      */
-    Message createMessage(String fromUser, String toUser, String summary, String text);
+    void createMessage(String fromUser, String toUser, String summary, String text);
 
     /**
      * gets message by ID
@@ -131,11 +115,11 @@ public interface AccessService {
      * T if sender
      * F if recipient
      *
-     * @param id
+     * @param username
      * @param isSender
      * @return
      */
-    List<Message> getInbox(long id, boolean isSender);
+    List<Message> getInbox(String username, boolean isSender);
 
     /**
      * ###############################################################

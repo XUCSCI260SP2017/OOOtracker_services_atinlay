@@ -9,9 +9,7 @@ public enum RoleEnum {
         WORKER,
         MANAGER,
         HR;
-    RoleEnum() {
-
-    }
+    RoleEnum() {}
 
     @Override
     public String toString() {

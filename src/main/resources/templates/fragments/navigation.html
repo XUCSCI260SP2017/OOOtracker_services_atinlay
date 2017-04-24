@@ -12,7 +12,7 @@
 		<div id="navigation">
 			<ul id="saturday">
 				<li><a th:href="@{/hello}"><span>Home</span></a></li>
-				<li><a th:href="@{/messages}"><span>messages</span></a></li>
+				<li><a th:href="@{/messages/} + ${#httpServletRequest.remoteUser} + @{/}"><span>messages</span></a></li>
 				<li><a th:href="@{/requests}"><span>requests</span></a></li>
 				<li><a th:href="@{/calendar}">calendar<span></span></a></li>
 			</ul>

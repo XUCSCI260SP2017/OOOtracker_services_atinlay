@@ -215,16 +215,11 @@ public class AccessServiceImpl implements AccessService {
      * @return
      */
     @Override
-    public TimeOffResponse approveEvent(Employee sender, TimeOffReq event, boolean isApproved) {
+    public TimeOffResponse approveEvent(Employee sender, TimeOffReq event, String description, String reason, boolean isApproved) {
         TimeOffResponse e = null;
 
         if (sender.getRole() == RoleEnum.MANAGER || sender.getRole() == RoleEnum.HR) {
-            if (isApproved) {
-                e = new TimeOffResponse();
-            } else {
-                event.deny();
-                e = event;
-            }
+            e = new TimeOffResponse(event.getId(), isApproved, reason, description, sender.getUsername());
         }
 
         return e;

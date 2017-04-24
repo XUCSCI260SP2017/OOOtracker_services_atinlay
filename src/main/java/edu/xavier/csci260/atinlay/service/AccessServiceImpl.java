@@ -211,7 +211,8 @@ public class AccessServiceImpl implements AccessService {
         if (sender.getRole() == RoleEnum.MANAGER || sender.getRole() == RoleEnum.HR) {
             e = new TimeOffResponse(event.getId(), isApproved, reason, description, sender.getUsername());
         }
-
+        timeOffResponseDAO.createTimeOffResponse(e);
         return e;
+
     }
 }

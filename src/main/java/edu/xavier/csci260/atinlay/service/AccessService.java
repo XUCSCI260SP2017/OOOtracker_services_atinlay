@@ -110,15 +110,13 @@ public interface AccessService {
 
     /**
      * create a message
-     * @param id
-     * @param created
      * @param toID
      * @param fromID
      * @param summary
      * @param text
      * @return
      */
-    Message createMessage(long id, Date created, long toID, long fromID, String summary, String text);
+    Message createMessage(String fromUser, String toUser, String summary, String text);
 
     /**
      * gets message by ID

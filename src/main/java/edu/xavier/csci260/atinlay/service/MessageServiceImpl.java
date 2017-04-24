@@ -3,10 +3,12 @@ package edu.xavier.csci260.atinlay.service;
 import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import edu.xavier.csci260.atinlay.domain.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by derekburdick on 3/27/17.
  */
+@Component
 public class MessageServiceImpl implements MessageService {
 
     @Autowired

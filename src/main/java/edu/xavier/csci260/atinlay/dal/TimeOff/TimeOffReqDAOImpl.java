@@ -17,78 +17,70 @@ public class TimeOffReqDAOImpl implements TimeOffReqDAO {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<TimeOffReq> getTimeOffReqsByRequester(String id) {
+    public List<TimeOffReq> getTimeOffReqsByEmployee(String employee) {
 
         final String sql = "SELECT * FROM timeOffRequests WHERE employee = ?";
 
         return (List<TimeOffReq>) jdbcTemplate.query(
                 sql,
-                new Object[]{ id },
-                new TORRowMapper()
+                new Object[]{ employee },
+                new RequestRowMapper()
         );
     }
 
     @Override
-    public List<TimeOffReq> getTimeOffReqsByRecipient(String id) {
+    public List<TimeOffReq> getTimeOffReqsByManager(String manager) {
 
         final String sql = "SELECT * FROM timeOffRequests WHERE manager = ?";
 
         return (List<TimeOffReq>) jdbcTemplate.query(
                 sql,
-                new Object[]{ id },
-                new TORRowMapper()
+                new Object[]{ manager },
+                new RequestRowMapper()
         );
     }
 
     @Override
-    public List<TimeOffReq> getTimeOffReqsById(Long id) {
+    public List<TimeOffReq> getAllTimeOffReqs() {
+
+        final String sqlStmt = "SELECT * FROM timeOffRequests";
+
+        return (List<TimeOffReq>) jdbcTemplate.query(sqlStmt, new RequestRowMapper());
+    }
+
+    @Override
+    public List<TimeOffReq> getTimeOffReqById(Long id) {
 
         final String sql = "SELECT * FROM timeOffRequests WHERE id = ?";
 
         return (List<TimeOffReq>) jdbcTemplate.query(
                 sql,
                 new Object[]{ id },
-                new TORRowMapper()
-        );
-    }
-
-
-    /**
-     *
-     * @param id of the manager who will review the request
-     * @return
-     */
-    @Override
-    public List<TimeOffReq> getUnreviewedTimeOffReqsByManager(String id) {
-
-        final String sql = "SELECT * FROM timeOffRequests WHERE reviewed = FALSE AND id = ? ORDER BY created";
-
-        return (List<TimeOffReq>) jdbcTemplate.query(
-                sql,
-                new Object[]{ id },
-                new TORRowMapper()
-        );
-    }
-
-    @Override
-    public List<TimeOffReq> getUnreviewedTimeOffReqsByEmployee(String id) {
-
-        final String sql = "SELECT * FROM timeOffRequests WHERE reviewed = FALSE AND id = ? ORDER BY created";
-
-        return (List<TimeOffReq>) jdbcTemplate.query(
-                sql,
-                new Object[]{ id },
-                new TORRowMapper()
+                new RequestRowMapper()
         );
     }
 
     @Override
     public void createTimeOffReq(TimeOffReq timeOffReq) {
 
+        final String sql = "INSERT INTO timeOffRequests (employee, manager, reason, description, startTimestamp, " +
+                "endTimestamp) VALUES (?,?,?,?,?,?)";
+
+        jdbcTemplate.update(sql,
+                timeOffReq.getEmployee(),
+                timeOffReq.getManager(),
+                timeOffReq.getReason(),
+                timeOffReq.getDescription(),
+                timeOffReq.getStartTimestamp(),
+                timeOffReq.getEndTimestamp()
+        );
     }
 
     @Override
     public void removeTimeOffReq(TimeOffReq timeOffReq) {
 
+        final String sqlStmt = "DELETE FROM timeOffRequests WHERE id = ?";
+
+        jdbcTemplate.update(sqlStmt, timeOffReq.getId());
     }
 }

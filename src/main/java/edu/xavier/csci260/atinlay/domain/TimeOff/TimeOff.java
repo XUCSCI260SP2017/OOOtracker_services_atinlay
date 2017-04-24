@@ -3,60 +3,33 @@ package edu.xavier.csci260.atinlay.domain.TimeOff;
 import java.sql.Timestamp;
 
 /**
- * class ___ is a member of the OOOtracker_services project.
+ * This represents time that an employee is garenteed to have off. This should only be created after a request has been
+ * approved by a manager
  * <p>
  * Created by Luke on 4/23/2017.
  */
 public class TimeOff {
 
+    // This id will be the same between TimeOff, TimeOffReq, and TimeOffResponse
     protected Long id;
 
-    private Timestamp startTimestamp;
+    protected Timestamp startTimestamp;
 
-    private Timestamp endTimestamp;
+    protected Timestamp endTimestamp;
 
     protected String employee;
 
-    protected String manager;
-
     private String reason;
 
-    public TimeOff(Timestamp startTimestamp, Timestamp endTimestamp, String employee, String manager, String reason) {
+    public TimeOff(Timestamp startTimestamp, Timestamp endTimestamp, String employee, String reason) {
 
         this.startTimestamp = startTimestamp;
         this.endTimestamp = endTimestamp;
         this.employee = employee;
-        this.manager = manager;
         this.reason = reason;
     }
 
     public TimeOff() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TimeOff timeOff = (TimeOff) o;
-
-        if (getId() != null ? !getId().equals(timeOff.getId()) : timeOff.getId() != null) return false;
-        if (!getStartTimestamp().equals(timeOff.getStartTimestamp())) return false;
-        if (!getEndTimestamp().equals(timeOff.getEndTimestamp())) return false;
-        if (!getEmployee().equals(timeOff.getEmployee())) return false;
-        if (!getManager().equals(timeOff.getManager())) return false;
-        return getReason().equals(timeOff.getReason());
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + getStartTimestamp().hashCode();
-        result = 31 * result + getEndTimestamp().hashCode();
-        result = 31 * result + getEmployee().hashCode();
-        result = 31 * result + getManager().hashCode();
-        result = 31 * result + getReason().hashCode();
-        return result;
     }
 
     public Long getId() {
@@ -89,14 +62,6 @@ public class TimeOff {
 
     public void setEmployee(String employee) {
         this.employee = employee;
-    }
-
-    public String getManager() {
-        return manager;
-    }
-
-    public void setManager(String manager) {
-        this.manager = manager;
     }
 
     public String getReason() {

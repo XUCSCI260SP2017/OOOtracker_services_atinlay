@@ -20,7 +20,9 @@ public interface TimeOffReqDAO {
      * @param id
      * @return list of tor's
      */
-    List<TimeOffReq> getTimeOffReqsByRequester(String id);
+    List<TimeOffReq> getTimeOffReqsByEmployee(String employee);
+
+    List<TimeOffReq> getAllTimeOffReqs();
 
     /**
      * returns tor's that have the specified recipient
@@ -28,18 +30,9 @@ public interface TimeOffReqDAO {
      * @param id
      * @return list of tor's
      */
-    List<TimeOffReq> getTimeOffReqsByRecipient(String id);
+    List<TimeOffReq> getTimeOffReqsByManager(String manager);
 
-    List<TimeOffReq> getTimeOffReqsById(Long id);
-
-    /**
-     * This function returns all of the TOR's that have not been reviewed so that a manager may decide to approve them
-     * @param id of the manager who will review the request
-     * @return List of all of the unreviewed TOR's
-     */
-    List<TimeOffReq> getUnreviewedTimeOffReqsByManager(String id);
-
-    List<TimeOffReq> getUnreviewedTimeOffReqsByEmployee(String id);
+    List<TimeOffReq> getTimeOffReqById(Long id);
 
     /**
      * creates a new TimeOffReq
@@ -50,7 +43,7 @@ public interface TimeOffReqDAO {
 
     void removeTimeOffReq(TimeOffReq timeOffReq);
 
-    class TORRowMapper implements RowMapper {
+    class RequestRowMapper implements RowMapper {
         public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
             TimeOffReq timeOffReq = new TimeOffReq();
 

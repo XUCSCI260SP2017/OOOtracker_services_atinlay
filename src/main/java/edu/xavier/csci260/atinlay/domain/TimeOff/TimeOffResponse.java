@@ -1,5 +1,7 @@
 package edu.xavier.csci260.atinlay.domain.TimeOff;
 
+import java.sql.Timestamp;
+
 /**
  * class ___ is a member of the OOOtracker_services project.
  * <p>
@@ -13,15 +15,38 @@ public class TimeOffResponse {
 
     private String reason;
 
+    private String manager;
+
     private String description;
 
-    public TimeOffResponse(Boolean approved, String reason, String description) {
+    private Timestamp closed;
+
+    public TimeOffResponse(Long id, Boolean approved, String reason, String description, String manager) {
+
+        this.id = id;
         this.approved = approved;
         this.reason = reason;
         this.description = description;
+        this.manager = manager;
     }
 
     public TimeOffResponse() {
+    }
+
+    public Timestamp getClosed() {
+        return closed;
+    }
+
+    public void setClosed(Timestamp closed) {
+        this.closed = closed;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
     }
 
     public Long getId() {

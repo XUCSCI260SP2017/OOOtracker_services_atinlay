@@ -13,16 +13,28 @@ public class TimeOffReq extends TimeOff {
 
     private String description;
 
+    private String manager;
+
     public TimeOffReq() {
         super();
     }
 
-    public TimeOffReq(Timestamp startTimestamp, Timestamp endTimestamp, String employee, String manager, String reason,
+    public TimeOffReq(Long id, Timestamp startTimestamp, Timestamp endTimestamp, String employee, String manager, String reason,
                       String description) {
 
-        super(startTimestamp, endTimestamp, employee, manager, reason);
+        super(startTimestamp, endTimestamp, employee, reason);
 
+        this.id = id;
+        this.manager = manager;
         this.description = description;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public void setManager(String manager) {
+        this.manager = manager;
     }
 
     public Timestamp getCreated() {

@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * class EmployeeDAOImpl is a member of the atinlay project.
  * <p>
@@ -56,4 +58,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
         jdbcTemplate.update(sqlStmt, employee.getUsername());
     }
+
+    @Override
+    public List<Employee> findAll(){
+
+    }
+
 }

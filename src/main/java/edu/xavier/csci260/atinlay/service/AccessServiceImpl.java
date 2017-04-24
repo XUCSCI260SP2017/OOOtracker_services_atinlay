@@ -4,6 +4,7 @@ import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
 import edu.xavier.csci260.atinlay.dal.EmployeeDAOImpl;
 import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import edu.xavier.csci260.atinlay.dal.MessageDAOImpl;
+import edu.xavier.csci260.atinlay.dal.TimeOff.*;
 import edu.xavier.csci260.atinlay.domain.*;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffReq;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffResponse;
@@ -23,12 +24,18 @@ public class AccessServiceImpl implements AccessService {
     public EmployeeDAO employeeDAO;
     public MessageDAO messageDAO;
     public JdbcTemplate jdbcTemplate;
+    public TimeOffReqDAO timeOffReqDAO;
+    public TimeOffDAO timeOffDAO;
+    public TimeOffResponseDAO timeOffResponseDAO;
 
     @Autowired
     public AccessServiceImpl(JdbcTemplate jdbcTemplate) {
         this.employeeDAO = new EmployeeDAOImpl(jdbcTemplate);
         this.messageDAO = new MessageDAOImpl();
         this.jdbcTemplate = jdbcTemplate;
+        this.timeOffDAO = new TimeOffDAOImpl();
+        this.timeOffReqDAO = new TimeOffReqDAOImpl();
+        this.timeOffResponseDAO = new TimeOffResponseDAOImpl();
     }
 
 

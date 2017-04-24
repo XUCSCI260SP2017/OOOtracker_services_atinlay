@@ -20,5 +20,5 @@ public interface MessageService {
     public Message createMessage(Long fromMe, Long toYou, String msgBody);
 
 
-
+    Message getMessageById(Long id);
 }

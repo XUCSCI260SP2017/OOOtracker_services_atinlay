@@ -19,7 +19,7 @@ public class TimeOffReq extends TimeOff {
         super();
     }
 
-    public TimeOffReq(Long id, Timestamp startTimestamp, Timestamp endTimestamp, String employee, String manager, String reason,
+    public TimeOffReq(Timestamp startTimestamp, Timestamp endTimestamp, String employee, String manager, String reason,
                       String description) {
 
         super(startTimestamp, endTimestamp, employee, reason);

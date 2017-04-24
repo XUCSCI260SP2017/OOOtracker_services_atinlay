@@ -6,6 +6,7 @@ import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import edu.xavier.csci260.atinlay.domain.TimeOff.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -137,5 +138,5 @@ public interface AccessService {
      */
     TimeOffResponse approveEvent(Employee sender, TimeOffReq event, String description, String reason, boolean isApproved);
 
-
+    TimeOffReq requestEvent(String managerEmail, String requesteeEmail, String description, String reason, Timestamp startTime, Timestamp endTime);
 }

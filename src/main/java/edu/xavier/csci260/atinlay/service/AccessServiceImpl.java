@@ -12,10 +12,13 @@ import edu.xavier.csci260.atinlay.domain.Message;
 import edu.xavier.csci260.atinlay.domain.RoleEnum;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffReq;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffResponse;
+import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -213,5 +216,16 @@ public class AccessServiceImpl implements AccessService {
         }
 
         return e;
+    }
+
+    @Override
+    public TimeOffReq requestEvent(String managerEmail, String requesteeEmail, String description, String reason, Timestamp startTime, Timestamp endTime) {
+        TimeOffReq request = null;
+        if (StringUtils.hasText(managerEmail) && StringUtils.hasText(requesteeEmail) && StringUtils.hasText(reason) && startTime != null && endTime != null) {
+            request = new TimeOffReq(startTime, endTime, requesteeEmail, managerEmail, reason, description);
+            timeOffReqDAO.createTimeOffReq(request);
+        }
+
+        return request;
     }
 }

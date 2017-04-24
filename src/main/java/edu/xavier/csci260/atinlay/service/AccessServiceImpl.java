@@ -48,7 +48,7 @@ public class AccessServiceImpl implements AccessService {
 
         if (this.getEmployee(email) != null) {
             employee = new Employee(id, email, pass, first, last, enabled, role);
-            employeeDAO.createUser(id, email, pass, first, last, enabled, role);
+            employeeDAO.createEmployee(employee);
         }
         return employee;
     }
@@ -80,7 +80,7 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee getEmployee(String email) {
-        return employeeDAO.findUser(email);
+        return employeeDAO.getEmployeeByUsername(email);
     }
 
     /**
@@ -91,19 +91,10 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee getEmployee(Employee e) {
-        return employeeDAO.findUser(e);
+        return this.getEmployee(e.getUsername());
     }
 
-    /**
-     * returns employee by id number
-     *
-     * @param id
-     * @return
-     */
-    @Override
-    public Employee getEmployee(long id) {
-        return employeeDAO.findUser(id);
-    }
+
 
     /**
      * grab employee by email, replace it with new employee
@@ -128,18 +119,8 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee deleteEmployee(Employee employee) {
-        return deleteEmployee(employee.getUsername());
-    }
-
-    /**
-     * deletes employee by ID
-     *
-     * @param ID
-     * @return
-     */
-    @Override
-    public Employee deleteEmployee(long ID) {
-        return employeeDAO.removeUser(ID);
+        employeeDAO.removeEmployee(employee);
+        return employee;
     }
 
     /**
@@ -150,7 +131,8 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee deleteEmployee(String email) {
-        return employeeDAO.removeUser(email);
+        Employee e = getEmployee(email);
+        return deleteEmployee(e);
     }
 
     /**
@@ -181,7 +163,7 @@ public class AccessServiceImpl implements AccessService {
      * gets message by ID
      *
      * @param id
-     * @return
+     * @returnH
      */
     @Override
     public Message getMessage(long id) {

@@ -38,7 +38,7 @@
 
 				<tr th:each="message : ${messages}">
 					<!--Above is an each statement that will make a new row for each Message given username has-->
-					<td><a th:text="${message.getSubject()}"> </a></td>
+					<td><a th:href="@{/readMessage/}+${message.getId()}+@{/}" th:text="${message.getSubject()}"> </a></td>
 					<td th:text="${message.getFrom()}"> </td>
 				</tr>
 			</table>

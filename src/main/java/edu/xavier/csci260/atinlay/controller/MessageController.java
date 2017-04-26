@@ -40,4 +40,9 @@ public class MessageController {
 		model.addAttribute("readMessage", messageService.getMessageById(messageID));
 		return "readMessage";
 	}
+
+	@RequestMapping(value = "/compose", method = RequestMethod.POST)
+	public String compose() {
+		return "compose";
+    	}
 }

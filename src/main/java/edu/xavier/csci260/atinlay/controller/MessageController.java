@@ -1,7 +1,6 @@
 package edu.xavier.csci260.atinlay.controller;
 
-import edu.xavier.csci260.atinlay.domain.Employee;
-import edu.xavier.csci260.atinlay.service.EmployeeService;
+import edu.xavier.csci260.atinlay.dal.MessageDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MessageController {
 
 	@Autowired
-	private EmployeeService employeeService;
+	private MessageDAO messageDAO;
 
 	/*
 	 *this method will handle call in messages.html and give an array of all messages
@@ -24,9 +23,7 @@ public class MessageController {
 	@RequestMapping(value = "/messages/{username}")
 	public String messages(Model model, @PathVariable("username")String username)
 	{
-		Employee employee = employeeService.getEmployee(username);
-
-		model.addAttribute("messages", employeeService.getInbox(	employee)); //find a way to get usernameService
+		model.addAttribute("messages", messageDAO.getMessagesByRecipient(username)); //find a way to get usernameService
 		return "messages";
 	}
 }

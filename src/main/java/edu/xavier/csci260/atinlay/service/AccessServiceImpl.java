@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.sql.DataSource;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,22 +28,18 @@ import java.util.List;
 @Component
 public class AccessServiceImpl implements AccessService {
 
-    public EmployeeDAO employeeDAO;
-    public MessageDAO messageDAO;
-    public JdbcTemplate jdbcTemplate;
-    public TimeOffReqDAO timeOffReqDAO;
-    public TimeOffDAO timeOffDAO;
-    public TimeOffResponseDAO timeOffResponseDAO;
-
     @Autowired
-    public AccessServiceImpl(JdbcTemplate jdbcTemplate) {
-        this.employeeDAO = new EmployeeDAOImpl(jdbcTemplate);
-        this.messageDAO = new MessageDAOImpl();
-        this.jdbcTemplate = jdbcTemplate;
-        this.timeOffDAO = new TimeOffDAOImpl();
-        this.timeOffReqDAO = new TimeOffReqDAOImpl();
-        this.timeOffResponseDAO = new TimeOffResponseDAOImpl();
-    }
+    public EmployeeDAO employeeDAO;
+    @Autowired
+    public MessageDAO messageDAO;
+    @Autowired
+    public JdbcTemplate jdbcTemplate;
+    @Autowired
+    public TimeOffReqDAO timeOffReqDAO;
+    @Autowired
+    public TimeOffDAO timeOffDAO;
+    @Autowired
+    public TimeOffResponseDAO timeOffResponseDAO;
 
 
     /**

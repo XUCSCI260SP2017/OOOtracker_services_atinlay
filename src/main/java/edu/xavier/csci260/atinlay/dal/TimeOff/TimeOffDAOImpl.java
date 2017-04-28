@@ -13,8 +13,8 @@ import java.util.List;
  * <p>
  * Created by Luke on 4/24/2017.
  */
-@Repository
 @Component
+@Repository
 public class TimeOffDAOImpl implements TimeOffDAO {
 
     @Autowired

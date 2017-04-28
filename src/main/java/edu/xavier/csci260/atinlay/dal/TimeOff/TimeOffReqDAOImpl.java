@@ -13,8 +13,9 @@ import java.util.List;
  * <p>
  * Created by Luke on 4/23/2017.
  */
-@Repository
+
 @Component
+@Repository
 public class TimeOffReqDAOImpl implements TimeOffReqDAO {
 
     @Autowired

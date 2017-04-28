@@ -1,8 +1,12 @@
 package edu.xavier.csci260.atinlay.controller;
 
+<<<<<<< Updated upstream
 import edu.xavier.csci260.atinlay.domain.Employee;
 import edu.xavier.csci260.atinlay.service.EmployeeService;
 import edu.xavier.csci260.atinlay.service.MessageService;
+=======
+import edu.xavier.csci260.atinlay.service.AccessService;
+>>>>>>> Stashed changes
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,3 +51,4 @@ public class MessageController {
 		return "compose";
     	}
 }
+

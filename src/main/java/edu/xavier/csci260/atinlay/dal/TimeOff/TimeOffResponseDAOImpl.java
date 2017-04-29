@@ -3,6 +3,8 @@ package edu.xavier.csci260.atinlay.dal.TimeOff;
 import edu.xavier.csci260.atinlay.domain.TimeOff.TimeOffResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +13,9 @@ import java.util.List;
  * <p>
  * Created by Luke on 4/24/2017.
  */
+
+@Component
+@Repository
 public class TimeOffResponseDAOImpl implements TimeOffResponseDAO {
 
     @Autowired

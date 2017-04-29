@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * class ___ is a member of the atinlay project.
@@ -18,6 +19,8 @@ public interface EmployeeDAO {
     void createEmployee(Employee employee);
 
     void removeEmployee(Employee employee);
+
+    List<Employee> findAll();
 
     /**
      * Custom RowMapper to correctly handle employee requests to the database

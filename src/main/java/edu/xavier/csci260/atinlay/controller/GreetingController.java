@@ -66,9 +66,4 @@ public class GreetingController {
     public String calendar() {
         return "calendar";
     }
-
-    @RequestMapping(value = "/compose", method = RequestMethod.GET)
-    public String compose() {
-        return "compose";
-    }
 }

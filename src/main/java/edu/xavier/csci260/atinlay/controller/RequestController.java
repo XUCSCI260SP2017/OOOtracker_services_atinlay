@@ -29,6 +29,12 @@ public class RequestController {
 
 	@RequestMapping(value = "/newRequest", method = RequestMethod.POST)
 	public String newRequest(@ModelAttribute TimeOffReq timeOffReq, Model model) {
+		String manager=accessService.getEmployee( timeOffReq.getEmployee() ).getManager_id();
+		String employee=timeOffReq.getEmployee();
+		String description = timeOffReq.getDescription();
+		String reason = timeOffReq.getDescription();
+
+		accessService.requestEvent(manager, employee, description, reason, timeOffReq.getStartTimestamp(), timeOffReq.getEndTimestamp());
 		return "newRequest";
     	}
 }

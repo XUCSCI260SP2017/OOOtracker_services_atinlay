@@ -2,10 +2,7 @@ package edu.xavier.csci260.atinlay.service;
 
 
 
-import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
-import edu.xavier.csci260.atinlay.dal.EmployeeDAOImpl;
-import edu.xavier.csci260.atinlay.dal.MessageDAO;
-import edu.xavier.csci260.atinlay.dal.MessageDAOImpl;
+import edu.xavier.csci260.atinlay.dal.*;
 import edu.xavier.csci260.atinlay.dal.TimeOff.*;
 import edu.xavier.csci260.atinlay.domain.Employee;
 import edu.xavier.csci260.atinlay.domain.Message;
@@ -29,17 +26,19 @@ import java.util.List;
 public class AccessServiceImpl implements AccessService {
 
     @Autowired
-    public EmployeeDAO employeeDAO;
+    private EmployeeDAO employeeDAO;
     @Autowired
-    public MessageDAO messageDAO;
+    private MessageDAO messageDAO;
     @Autowired
-    public JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
     @Autowired
-    public TimeOffReqDAO timeOffReqDAO;
+    private TimeOffReqDAO timeOffReqDAO;
     @Autowired
-    public TimeOffDAO timeOffDAO;
+    private TimeOffDAO timeOffDAO;
     @Autowired
-    public TimeOffResponseDAO timeOffResponseDAO;
+    private TimeOffResponseDAO timeOffResponseDAO;
+    @Autowired
+    private DatabaseDAO databaseDAO;
 
 
     /**
@@ -60,6 +59,7 @@ public class AccessServiceImpl implements AccessService {
             employee = new Employee(id, email, pass, first, last, enabled, role);
             employeeDAO.createEmployee(employee);
         }
+        databaseDAO.save();
         return employee;
     }
 
@@ -71,15 +71,12 @@ public class AccessServiceImpl implements AccessService {
      */
     @Override
     public Employee addEmployee(Employee employee) {
-        return this.addEmployee(
-                employee.getId(),
-                employee.getUsername(),
-                employee.getPassword(),
-                employee.getFirst_name(),
-                employee.getLast_name(),
-                employee.isEnabled(),
-                employee.getRole()
-        );
+
+        employeeDAO.createEmployee(employee);
+
+        databaseDAO.save();
+
+        return employee;
     }
 
     /**
@@ -130,6 +127,7 @@ public class AccessServiceImpl implements AccessService {
     @Override
     public Employee deleteEmployee(Employee employee) {
         employeeDAO.removeEmployee(employee);
+        databaseDAO.save();
         return employee;
     }
 
@@ -142,6 +140,7 @@ public class AccessServiceImpl implements AccessService {
     @Override
     public Employee deleteEmployee(String email) {
         Employee e = getEmployee(email);
+        databaseDAO.save();
         return deleteEmployee(e);
     }
 
@@ -165,6 +164,7 @@ public class AccessServiceImpl implements AccessService {
     public void createMessage(String fromUser,String toUser, String summary, String text) {
         Message message = new Message(fromUser,toUser,text,summary);
         messageDAO.createMessage(message);
+        databaseDAO.save();
     }
 
     /**
@@ -212,6 +212,7 @@ public class AccessServiceImpl implements AccessService {
             e = new TimeOffResponse(event.getId(), isApproved, reason, description, sender.getUsername());
         }
         timeOffResponseDAO.createTimeOffResponse(e);
+        databaseDAO.save();
         return e;
 
     }
@@ -223,7 +224,7 @@ public class AccessServiceImpl implements AccessService {
             request = new TimeOffReq(startTime, endTime, requesteeEmail, managerEmail, reason, description);
             timeOffReqDAO.createTimeOffReq(request);
         }
-
+        databaseDAO.save();
         return request;
     }
 }

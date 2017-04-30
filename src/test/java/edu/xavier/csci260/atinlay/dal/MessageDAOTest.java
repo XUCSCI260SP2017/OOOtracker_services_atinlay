@@ -27,6 +27,7 @@ public class MessageDAOTest {
 
     @Test
     public void getMessagesBySender() throws Exception {
+
         List<Message> messages = sut.getMessagesBySender("manager");
 
         assertEquals(
@@ -39,6 +40,7 @@ public class MessageDAOTest {
 
     @Test
     public void getMessagesByRecipient() throws Exception {
+
         List<Message> messages = sut.getMessagesByRecipient("hr");
 
         assertEquals(

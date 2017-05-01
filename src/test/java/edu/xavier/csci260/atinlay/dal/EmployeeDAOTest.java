@@ -33,7 +33,7 @@ public class EmployeeDAOTest {
     private EmployeeDAO sut;
 
     private Employee MANAGER_EXPECTED = new Employee(
-            new Long(4),
+            new Long(2),
             "manager",
             "password",
             "user",
@@ -64,6 +64,8 @@ public class EmployeeDAOTest {
     public void getEmployeeByUsernameToString() throws Exception {
 
         Employee MANAGER_ACTUAL = sut.getEmployeeByUsername("manager");
+
+        MANAGER_EXPECTED.setId(new Long(2));
 
         assertEquals(MANAGER_EXPECTED.toString(), MANAGER_ACTUAL.toString());
     }

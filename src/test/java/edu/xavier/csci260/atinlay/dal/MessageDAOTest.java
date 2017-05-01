@@ -38,9 +38,9 @@ public class MessageDAOTest {
         List<Message> messages = sut.getMessagesBySender("manager");
 
         assertEquals(
-                "[Message{id=113, created=2014-07-10 14:35:00.0, from='manager', to='worker', " +
+                "[Message{id=1, created=2014-07-10 14:35:00.0, from='manager', to='worker', " +
                         "body='This message is for Rob', subject='Hello Luke'}, " +
-                        "Message{id=115, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
+                        "Message{id=3, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
                         "body='This message is for Rob', subject='Is this secure?'}]",
                 messages.toString());
     }
@@ -51,9 +51,9 @@ public class MessageDAOTest {
         List<Message> messages = sut.getMessagesByRecipient("hr");
 
         assertEquals(
-                "[Message{id=115, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
+                "[Message{id=3, created=2014-07-11 21:15:00.0, from='manager', to='hr', " +
                         "body='This message is for Rob', subject='Is this secure?'}, " +
-                        "Message{id=117, created=2014-07-12 10:00:00.0, from='worker', to='hr', " +
+                        "Message{id=5, created=2014-07-12 10:00:00.0, from='worker', to='hr', " +
                         "body='This message is for Joe', subject='Greetings Joe'}]",
                 messages.toString());
     }

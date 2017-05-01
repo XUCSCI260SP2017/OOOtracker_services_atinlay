@@ -51,23 +51,16 @@ public class Employee implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
         Employee employee = (Employee) o;
 
-        if (getId() != null ? !getId().equals(employee.getId()) : employee.getId() != null)
-            return false;
-        if (!getUsername().equals(employee.getUsername()))
-            return false;
-        if (!getPassword().equals(employee.getPassword()))
-            return false;
-        if (!getFirst_name().equals(employee.getFirst_name()))
-            return false;
-        if (!getLast_name().equals(employee.getLast_name()))
-            return false;
+        if (getId() != null ? !getId().equals(employee.getId()) : employee.getId() != null) return false;
+        if (!getUsername().equals(employee.getUsername())) return false;
+        if (!getPassword().equals(employee.getPassword())) return false;
+        if (!getFirst_name().equals(employee.getFirst_name())) return false;
+        if (!getLast_name().equals(employee.getLast_name())) return false;
         if (getEnabled() != null ? !getEnabled().equals(employee.getEnabled()) : employee.getEnabled() != null)
             return false;
         if (getManager_id() != null ? !getManager_id().equals(employee.getManager_id()) : employee.getManager_id() != null)
@@ -86,6 +79,20 @@ public class Employee implements Serializable {
         result = 31 * result + (getManager_id() != null ? getManager_id().hashCode() : 0);
         result = 31 * result + getRole().hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", enabled=" + enabled +
+                ", manager_id='" + manager_id + '\'' +
+                ", role=" + role +
+                '}';
     }
 
     public String getUsername() {

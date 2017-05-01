@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Request Menu</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/reqMenu/reqCss.css}" />
+</head>
+<body>
+	<div th:fragment="reqMenu">
+		<div id="reqMenu">
+			<ul>
+				<li><a th:href="@{/requests}">Home</a></li>
+				<li><a th:href="@{/newRequest}">New Request</a></li>
+				<li><a th:href="@{/addEmployee}">New Employee</a></li>
+				<li><a th:href="@{/requestedDays}">My Requests</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

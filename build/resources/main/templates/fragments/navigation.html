@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Navigation</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/navigation/navigation.css}" />
+</head>
+<body>
+	<div th:fragment="navigationLoggedIn">
+		<div id="navigation">
+			<ul id="saturday">
+				<li><a th:href="@{/hello}"><span>Home</span></a></li>
+				<li><a th:href="@{/messages/} + ${#httpServletRequest.remoteUser} + @{/}"><span>messages</span></a></li>
+				<li><a th:href="@{/requests}"><span>requests</span></a></li>
+				<li><a th:href="@{/calendar}">calendar<span></span></a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div th:fragment="navigationLoggedOut">
+		<div id="navigation">
+			<ul id="saturday">
+				<li><a th:href="@{/hello}"><span>Home</span></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+

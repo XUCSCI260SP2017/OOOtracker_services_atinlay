@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/header.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/footer.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/global.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/css/messages.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/assets/navigation/navigation.css}" />
+</head>
+<body>
+	<div id="header">
+		<h1>Atin Lay Time Management</h1>
+	</div>
+
+	<div th:include="fragments/navigation :: navigationLoggedIn"></div>
+	
+	<h4 th:inline="text">[[${#httpServletRequest.remoteUser}]]'s messages</h4>
+	
+	<div th:fragment="noMessages">
+		<h4>You have no messages</h4>
+	</div>
+	
+	<div th:fragment="hasMessages">
+		<div id="readerPane">
+
+		</div>
+
+		<div id="messages">
+			<table>
+				<tr>
+						<th>Subject</th>
+						<th>Sender</th>
+				</tr>
+
+				<tr th:each="message : ${messages}">
+					<!--Above is an each statement that will make a new row for each Message given username has-->
+					<td><a th:href="@{/readMessage/}+${message.getId()}+@{/}" th:text="${message.getSubject()}"> </a></td>
+					<td th:text="${message.getFrom()}"> </td>
+				</tr>
+			</table>
+		</div>
+	</div>
+		
+	<div th:include="fragments/footer :: footer"></div>
+</body>
+</html>

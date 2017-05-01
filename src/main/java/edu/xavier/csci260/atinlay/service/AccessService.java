@@ -1,5 +1,7 @@
 package edu.xavier.csci260.atinlay.service;
 
+import edu.xavier.csci260.atinlay.dal.DatabaseDAO;
+import edu.xavier.csci260.atinlay.dal.EmployeeDAO;
 import edu.xavier.csci260.atinlay.domain.Employee;
 import edu.xavier.csci260.atinlay.domain.Message;
 import edu.xavier.csci260.atinlay.domain.RoleEnum;
@@ -18,6 +20,16 @@ import java.util.List;
 // INSERT INTO user(id,email,password,first_name,last_name,enabled)
 // VALUES (0,'staudigelc@xavier.edu','password','Chris','Staudigel',true);
 public interface AccessService {
+    /**
+     * ###############################################################
+     * #####################Testing Stuff#############################
+     * ###############################################################
+     */
+
+    void setEmployeeDAO(EmployeeDAO employeeDAO);
+
+    void setDatabaseDAO(DatabaseDAO databaseDAO);
+
 
     /**
      * ###############################################################

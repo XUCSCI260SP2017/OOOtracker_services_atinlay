@@ -40,6 +40,8 @@ public class AccessServiceImpl implements AccessService {
     @Autowired
     private DatabaseDAO databaseDAO;
 
+    public void setEmployeeDAO(EmployeeDAO employeeDAO) { this.employeeDAO = employeeDAO; }
+    public void setDatabaseDAO(DatabaseDAO databaseDAO) { this.databaseDAO = databaseDAO; }
 
     /**
      * add employee

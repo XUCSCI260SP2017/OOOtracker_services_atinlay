@@ -23,7 +23,7 @@ public class RequestController {
 	@RequestMapping(value = "/newRequest", method = RequestMethod.GET)
 	public String getNewRequest(Model model)
 	{
-		model.addAttribute("newTimeOffReq", new TimeOffReq());
+		model.addAttribute("timeOffReq", new TimeOffReq());
 		return "newRequest";
 	}
 

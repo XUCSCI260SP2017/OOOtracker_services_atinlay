@@ -58,14 +58,12 @@ public class AccessServiceTest {
         assertEquals(employeeDAO.getEmployeeByUsername(employee.getUsername()), employee);
     }
 
-    @Test
-    public void addEmployee1() {
-
-    }
 
     @Test
     public void getEmployee() {
-
+        when(employeeDAO.getEmployeeByUsername(employee.getUsername())).thenReturn(employee);
+        Employee testEmployee = accessService.getEmployee(employee.getUsername());
+        assertEquals(testEmployee, employee);
     }
 
     @Test

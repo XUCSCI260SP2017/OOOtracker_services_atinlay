@@ -2,6 +2,7 @@ package edu.xavier.csci260.atinlay.dal;
 
 import edu.xavier.csci260.atinlay.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -61,7 +62,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> findAll(){
-        return null;
+
+        String sqlStmt = "SELECT first_name, last_name FROM users";
+
+        return jdbcTemplate.query(sqlStmt, new BeanPropertyRowMapper(Employee.class));
     }
 
 }
